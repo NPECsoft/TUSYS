@@ -61,36 +61,57 @@ public class dbconn {
         useDB();
         // Build batch queries
         qtab1 = "CREATE TABLE `kuliah` ("
-                + "`id` INT(8) PRIMARY KEY AUTO_INCREMENT, "
-                + "`nama_kuliah` VARCHAR(255), "
-                + "`jumlah_peserta` INT(8)"
+                + "`kode_kuliah` VARCHAR(6) PRIMARY KEY AUTO_INCREMENT, "
+                + "`nama_kuliah` VARCHAR(255) NOT NULL, "
+                + "`jumlah_peserta` INT(8) NOT NULL"
                 + ");";
         
         qtab2 = "CREATE TABLE `ruang` ("
                 + "`id` INT(8) PRIMARY KEY AUTO_INCREMENT, "
-                + "`nama_ruang` VARCHAR(255), "
-                + "`jenis_ruang` VARCHAR(255), "
-                + "`kapasitas_ruang` INT(8), "
+                + "`nama_ruang` VARCHAR(255) NOT NULL, "
+                + "`jenis_ruang` VARCHAR(255) NOT NULL, "
+                + "`kapasitas_ruang` INT(8) NOT NULL, "
                 + "`fasilitas` TEXT"
                 + ");";
         
         qtab3 = "CREATE TABLE `penggunaan_ruangan` ("
                 + "`id` INT(8) PRIMARY KEY AUTO_INCREMENT, "
-                + "`nama_kegiatan` VARCHAR(255), "
-                + "`jenis_kegiatan` VARCHAR(255), "
-                + "`start_time_date` DATETIME, "
-                + "`finish_time_date` DATETIME"
+                + "`nama_kegiatan` VARCHAR(255) NOT NULL, "
+                + "`jenis_kegiatan` VARCHAR(255) NOT NULL, "
+                + "`start_time` TIME NOT NULL, "
+                + "`finish_time` TIME NOT NULL, "
+                + "`tanggal` DATE NOT NULL, "
+                + "`id_ruang` INT(8) NOT NULL,"
+                + "FOREIGN KEY (`id_ruang`) REFERENCES `ruang`(`id`)"
                 + ");";
         
         qtab4 = "CREATE TABLE `pemesanan_ruangan` ("
                 + "`id` INT(8) PRIMARY KEY AUTO_INCREMENT, "
-                + "`nama_kegiatan` VARCHAR(255), "
-                + "`jenis_kegiatan` VARCHAR(255), "
-                + "`start_time_date` DATETIME, "
-                + "`finish_time_date` DATETIME"
+                + "`nama_kegiatan` VARCHAR(255) NOT NULL, "
+                + "`jenis_kegiatan` VARCHAR(255) NOT NULL, "
+                + "`start_time` TIME NOT NULL, "
+                + "`finish_time` TIME NOT NULL, "
+                + "`tanggal` DATE NOT NULL, "
+                + "`id_ruang` INT(8) NOT NULL, "
+                + "FOREIGN KEY (`id_ruang`) REFERENCES `ruang`(`id`)"
                 + ");";
         
         // Continue HERE for qtab5 until qtab8!!
+        qtab5 = "CREATE TABLE `kuliah_pemesan` ("
+                + "`id` INT(8) PRIMARY KEY AUTO_INCREMENT, "
+                + "`id_kuliah` INT(8) NOT NULL, "
+                + "`id_pemesanan_ruangan` INT(8) NOT NULL, "
+                + "FOREIGN KEY (`id_kuliah`) REFERENCES `kuliah`(`id`), "
+                + "FOREIGN KEY (`id_pemesanan_ruangan`) REFERENCES `pemesanan_ruangan`(`id`)"
+                + ");";
+        
+        qtab6 = "CREATE TABLE `kuliah_pengguna` ("
+                + "`id` INT(8) PRIMARY KEY AUTO_INCREMENT, "
+                + "`kode_kuliah_kuliah` INT(8) NOT NULL, "
+                + "`id_pemesanan_ruangan` INT(8) NOT NULL, "
+                + "FOREIGN KEY (`kode_kuliah_kuliah`) REFERENCES `kuliah`(`kode_kuliah`), "
+                + "FOREIGN KEY (`id_pemesanan_ruangan`) REFERENCES `pemesanan_ruangan`(`id`)"
+                + ");";
         
         // Execute query
         System.out.println("createNewTables: Creating tables in database...");
