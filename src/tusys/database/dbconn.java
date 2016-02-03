@@ -61,9 +61,10 @@ public class dbconn {
         useDB();
         // Build batch queries
         qtab1 = "CREATE TABLE `kuliah` ("
-                + "`kode_kuliah` VARCHAR(6) PRIMARY KEY AUTO_INCREMENT, "
+                + "`kode_kuliah` VARCHAR(6), "
                 + "`nama_kuliah` VARCHAR(255) NOT NULL, "
-                + "`jumlah_peserta` INT(8) NOT NULL"
+                + "`jumlah_peserta` INT(8) NOT NULL, "
+                + "PRIMARY KEY (`kode_kuliah`)"
                 + ");";
         
         qtab2 = "CREATE TABLE `ruang` ("
@@ -79,7 +80,7 @@ public class dbconn {
                 + "`nama_kegiatan` VARCHAR(255) NOT NULL, "
                 + "`jenis_kegiatan` VARCHAR(255) NOT NULL, "
                 + "`start_time` TIME NOT NULL, "
-                + "`finish_time` TIME NOT NULL, "
+                + "`finish_time` TIME, "
                 + "`tanggal` DATE NOT NULL, "
                 + "`id_ruang` INT(8) NOT NULL,"
                 + "FOREIGN KEY (`id_ruang`) REFERENCES `ruang`(`id`)"
@@ -99,15 +100,15 @@ public class dbconn {
         // Continue HERE for qtab5 until qtab8!!
         qtab5 = "CREATE TABLE `kuliah_pemesan` ("
                 + "`id` INT(8) PRIMARY KEY AUTO_INCREMENT, "
-                + "`id_kuliah` INT(8) NOT NULL, "
+                + "`kode_kuliah_kuliah` VARCHAR(6) NOT NULL, "
                 + "`id_pemesanan_ruangan` INT(8) NOT NULL, "
-                + "FOREIGN KEY (`id_kuliah`) REFERENCES `kuliah`(`id`), "
+                + "FOREIGN KEY (`kode_kuliah_kuliah`) REFERENCES `kuliah`(`kode_kuliah`), "
                 + "FOREIGN KEY (`id_pemesanan_ruangan`) REFERENCES `pemesanan_ruangan`(`id`)"
                 + ");";
         
         qtab6 = "CREATE TABLE `kuliah_pengguna` ("
                 + "`id` INT(8) PRIMARY KEY AUTO_INCREMENT, "
-                + "`kode_kuliah_kuliah` INT(8) NOT NULL, "
+                + "`kode_kuliah_kuliah` VARCHAR(6) NOT NULL, "
                 + "`id_pemesanan_ruangan` INT(8) NOT NULL, "
                 + "FOREIGN KEY (`kode_kuliah_kuliah`) REFERENCES `kuliah`(`kode_kuliah`), "
                 + "FOREIGN KEY (`id_pemesanan_ruangan`) REFERENCES `pemesanan_ruangan`(`id`)"
@@ -117,11 +118,20 @@ public class dbconn {
         System.out.println("createNewTables: Creating tables in database...");
         stmt = conn.createStatement();
         
+        // conn.setAutoCommit(false);
         // Execute batch queries here!!
+        stmt.addBatch(qtab1);
+        stmt.addBatch(qtab2);
+        stmt.addBatch(qtab3);
+        stmt.addBatch(qtab4);
+        stmt.addBatch(qtab5);
+        stmt.addBatch(qtab6);
         
+        stmt.executeBatch();
+        // conn.commit();
         // int rs = stmt.executeUpdate(sql);
         
-        System.out.println("createNewTables: Tables successfully created in database.");
+        System.out.println("createNewTables: Tables successfully created in database (batch).");
     }
     
     private void initializeDBCONN(String _user, String _pass) throws SQLException, ClassNotFoundException {
