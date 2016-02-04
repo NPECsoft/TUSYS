@@ -61,46 +61,77 @@ public class dbconn {
         useDB();
         // Build batch queries
         qtab1 = "CREATE TABLE `kuliah` ("
-                + "`id` INT(8) PRIMARY KEY AUTO_INCREMENT, "
-                + "`nama_kuliah` VARCHAR(255), "
-                + "`jumlah_peserta` INT(8)"
+                + "`kode_kuliah` VARCHAR(6), "
+                + "`nama_kuliah` VARCHAR(255) NOT NULL, "
+                + "`jumlah_peserta` INT(8) NOT NULL, "
+                + "PRIMARY KEY (`kode_kuliah`)"
                 + ");";
         
         qtab2 = "CREATE TABLE `ruang` ("
                 + "`id` INT(8) PRIMARY KEY AUTO_INCREMENT, "
-                + "`nama_ruang` VARCHAR(255), "
-                + "`jenis_ruang` VARCHAR(255), "
-                + "`kapasitas_ruang` INT(8), "
+                + "`nama_ruang` VARCHAR(255) NOT NULL, "
+                + "`jenis_ruang` VARCHAR(255) NOT NULL, "
+                + "`kapasitas_ruang` INT(8) NOT NULL, "
                 + "`fasilitas` TEXT"
                 + ");";
         
         qtab3 = "CREATE TABLE `penggunaan_ruangan` ("
                 + "`id` INT(8) PRIMARY KEY AUTO_INCREMENT, "
-                + "`nama_kegiatan` VARCHAR(255), "
-                + "`jenis_kegiatan` VARCHAR(255), "
-                + "`start_time_date` DATETIME, "
-                + "`finish_time_date` DATETIME"
+                + "`nama_kegiatan` VARCHAR(255) NOT NULL, "
+                + "`jenis_kegiatan` VARCHAR(255) NOT NULL, "
+                + "`start_time` TIME NOT NULL, "
+                + "`finish_time` TIME, "
+                + "`tanggal` DATE NOT NULL, "
+                + "`id_ruang` INT(8) NOT NULL,"
+                + "FOREIGN KEY (`id_ruang`) REFERENCES `ruang`(`id`)"
                 + ");";
         
         qtab4 = "CREATE TABLE `pemesanan_ruangan` ("
                 + "`id` INT(8) PRIMARY KEY AUTO_INCREMENT, "
-                + "`nama_kegiatan` VARCHAR(255), "
-                + "`jenis_kegiatan` VARCHAR(255), "
-                + "`start_time_date` DATETIME, "
-                + "`finish_time_date` DATETIME"
+                + "`nama_kegiatan` VARCHAR(255) NOT NULL, "
+                + "`jenis_kegiatan` VARCHAR(255) NOT NULL, "
+                + "`start_time` TIME NOT NULL, "
+                + "`finish_time` TIME NOT NULL, "
+                + "`tanggal` DATE NOT NULL, "
+                + "`id_ruang` INT(8) NOT NULL, "
+                + "FOREIGN KEY (`id_ruang`) REFERENCES `ruang`(`id`)"
                 + ");";
         
         // Continue HERE for qtab5 until qtab8!!
+        qtab5 = "CREATE TABLE `kuliah_pemesan` ("
+                + "`id` INT(8) PRIMARY KEY AUTO_INCREMENT, "
+                + "`kode_kuliah_kuliah` VARCHAR(6) NOT NULL, "
+                + "`id_pemesanan_ruangan` INT(8) NOT NULL, "
+                + "FOREIGN KEY (`kode_kuliah_kuliah`) REFERENCES `kuliah`(`kode_kuliah`), "
+                + "FOREIGN KEY (`id_pemesanan_ruangan`) REFERENCES `pemesanan_ruangan`(`id`)"
+                + ");";
+        
+        qtab6 = "CREATE TABLE `kuliah_pengguna` ("
+                + "`id` INT(8) PRIMARY KEY AUTO_INCREMENT, "
+                + "`kode_kuliah_kuliah` VARCHAR(6) NOT NULL, "
+                + "`id_pemesanan_ruangan` INT(8) NOT NULL, "
+                + "FOREIGN KEY (`kode_kuliah_kuliah`) REFERENCES `kuliah`(`kode_kuliah`), "
+                + "FOREIGN KEY (`id_pemesanan_ruangan`) REFERENCES `pemesanan_ruangan`(`id`)"
+                + ");";
         
         // Execute query
         System.out.println("createNewTables: Creating tables in database...");
         stmt = conn.createStatement();
         
+        // conn.setAutoCommit(false);
         // Execute batch queries here!!
+        stmt.addBatch(qtab1);
+        stmt.addBatch(qtab2);
+        stmt.addBatch(qtab3);
+        stmt.addBatch(qtab4);
+        stmt.addBatch(qtab5);
+        stmt.addBatch(qtab6);
         
+        stmt.executeBatch();
+        // conn.commit();
         // int rs = stmt.executeUpdate(sql);
         
-        System.out.println("createNewTables: Tables successfully created in database.");
+        System.out.println("createNewTables: Tables successfully created in database (batch).");
     }
     
     private void initializeDBCONN(String _user, String _pass) throws SQLException, ClassNotFoundException {

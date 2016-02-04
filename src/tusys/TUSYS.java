@@ -6,6 +6,8 @@
 package tusys;
 
 import java.sql.*;
+import tusys.database.DatabaseLoginJDialog;
+import tusys.database.MainMenu;
 import tusys.database.dbconn;
 
 /**
@@ -14,10 +16,15 @@ import tusys.database.dbconn;
  */
 public class TUSYS {
     private static dbconn dbc;
+    // private static DatabaseLoginJDialog dbLoginDialog;
     
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         // TODO code application logic here
-        dbc = new dbconn("desktopuser", "desktoppass");
+        MainMenu mm = new MainMenu();
+        DatabaseLoginJDialog dbLoginDialog = new DatabaseLoginJDialog(mm, true);
+        dbLoginDialog.setVisible(true);
+        mm.setVisible(true);
+        dbc = new dbconn(dbLoginDialog.getDBUsername(), dbLoginDialog.getDBPassword());
     }
 
     public TUSYS() throws SQLException, ClassNotFoundException {
