@@ -207,4 +207,15 @@ public class dbconn {
         }
         return retv.toArray(new Kuliah[retv.size()]);
     }
+    
+    public void deleteKuliahByKode(String kode_kuliah) throws SQLException{
+        String sql;
+        stmt = conn.createStatement();
+        sql = "DELETE FROM kuliah WHERE kode_kuliah=?";
+        
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setString(1, kode_kuliah);
+        
+        ps.executeUpdate();
+    }
 }

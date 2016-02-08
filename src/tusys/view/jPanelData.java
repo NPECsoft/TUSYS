@@ -126,7 +126,17 @@ public class jPanelData extends javax.swing.JPanel {
                 public void actionPerformed(ActionEvent e) {
                     JTable table = (JTable)e.getSource();
                     int modelRow = Integer.valueOf( e.getActionCommand() );
-                    JOptionPane.showMessageDialog(null, "operasi hapus belum dibuat");
+                    String kodekuliah = (String) table.getModel().getValueAt(modelRow, 0);
+                    int confirm = JOptionPane.showConfirmDialog(null, "Yakin menghapus kuliah " + kodekuliah + " ?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+                    if (confirm==JOptionPane.YES_OPTION){
+                        try {
+                            getMainMenu().getDbc().deleteKuliahByKode(kodekuliah);
+                        } catch (SQLException ex) {
+                            JOptionPane.showMessageDialog(null, "error: " + ex);
+                            Logger.getLogger(jPanelData.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                    showDataKuliah();
                 }
             };
             //aksi ubah
