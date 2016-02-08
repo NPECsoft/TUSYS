@@ -7,7 +7,7 @@ package tusys;
 
 import java.sql.*;
 import tusys.database.DatabaseLoginJDialog;
-import tusys.database.MainMenu;
+import tusys.view.MainMenu;
 import tusys.database.dbconn;
 
 /**
