@@ -11,6 +11,7 @@ package tusys.database;
  */
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class dbconn {
     // JDBC driver name and database URL
@@ -187,5 +188,23 @@ public class dbconn {
         }
         
         System.out.println("Database successfully closed.");
+    }
+    
+    public Kuliah[] getAllKuliah() throws SQLException{
+        String sql;
+        
+        stmt = conn.createStatement();
+        sql = "SELECT * FROM kuliah";
+        
+        ResultSet rs = stmt.executeQuery(sql);
+        ArrayList<Kuliah> retv = new ArrayList<>();
+        while (rs.next()){
+            Kuliah k = new Kuliah();
+            k.setKode_kuliah(rs.getString("kode_kuliah"));
+            k.setNama_kuliah(rs.getString("nama_kuliah"));
+            k.setJumlah_peserta(rs.getInt("jumlah_peserta"));
+            retv.add(k);
+        }
+        return retv.toArray(new Kuliah[retv.size()]);
     }
 }

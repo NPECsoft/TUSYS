@@ -25,6 +25,8 @@ public class TUSYS {
         dbLoginDialog.setVisible(true);
         mm.setVisible(true);
         dbc = new dbconn(dbLoginDialog.getDBUsername(), dbLoginDialog.getDBPassword());
+        dbc.useDB();
+        mm.setDbc(dbc);
     }
 
     public TUSYS() throws SQLException, ClassNotFoundException {

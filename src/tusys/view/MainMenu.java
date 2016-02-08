@@ -11,6 +11,7 @@ import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import tusys.database.dbconn;
 import tusys.view.FirstPage;
 
 /**
@@ -30,7 +31,7 @@ public class MainMenu extends javax.swing.JFrame {
         setResizable(false);
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         
-        
+        jPanelData1.setMainMenu(this);
         //Data Button
 
         // Window Listeners
@@ -153,4 +154,20 @@ public class MainMenu extends javax.swing.JFrame {
     private tusys.view.jPanelTransaksi jPanelTransaksi1;
     private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables
+
+    private dbconn dbc;
+
+    /**
+     * @return the dbc
+     */
+    public dbconn getDbc() {
+        return dbc;
+    }
+
+    /**
+     * @param dbc the dbc to set
+     */
+    public void setDbc(dbconn dbc) {
+        this.dbc = dbc;
+    }
 }
