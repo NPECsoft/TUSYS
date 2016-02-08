@@ -14,6 +14,19 @@ public class Kuliah {
     private String nama_kuliah;
     private int jumlah_peserta;
 
+    public Kuliah(){
+        kode_kuliah = "";
+        nama_kuliah = "";
+        jumlah_peserta = 0;
+    }
+    
+    public Kuliah(String kode_kuliah, String nama_kuliah, int jumlah_peserta) {
+        this.kode_kuliah=kode_kuliah;
+        this.nama_kuliah=nama_kuliah;
+        this.jumlah_peserta=jumlah_peserta;
+        
+    }
+
     /**
      * @return the kode_kuliah
      */

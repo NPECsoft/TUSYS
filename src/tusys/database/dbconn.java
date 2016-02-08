@@ -205,6 +205,7 @@ public class dbconn {
             k.setJumlah_peserta(rs.getInt("jumlah_peserta"));
             retv.add(k);
         }
+
         return retv.toArray(new Kuliah[retv.size()]);
     }
     
@@ -217,5 +218,21 @@ public class dbconn {
         ps.setString(1, kode_kuliah);
         
         ps.executeUpdate();
+        ps.close();
+    }
+    
+    public void editKuliahByKode(String kode_kuliah_target, Kuliah k_databaru) throws SQLException{
+        String sql;
+        stmt = conn.createStatement();
+        sql = "UPDATE kuliah SET kode_kuliah=?,nama_kuliah=?,jumlah_peserta=? WHERE kode_kuliah=?; ";
+        
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setString(1, k_databaru.getKode_kuliah());
+        ps.setString(2, k_databaru.getNama_kuliah());
+        ps.setInt(3, k_databaru.getJumlah_peserta());
+        ps.setString(4, kode_kuliah_target);
+        
+        ps.executeUpdate();
+        ps.close();
     }
 }

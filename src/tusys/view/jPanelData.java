@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -146,7 +147,16 @@ public class jPanelData extends javax.swing.JPanel {
                 public void actionPerformed(ActionEvent e) {
                     JTable table = (JTable)e.getSource();
                     int modelRow = Integer.valueOf( e.getActionCommand() );
-                    JOptionPane.showMessageDialog(null, "operasi ubah belum dibuat");
+                    
+                    TableModel model = table.getModel();
+                    final JDialog frame = new JDialog(jPanelData.this.getMainMenu(), "Ubah Data Kuliah", true);
+                    frame.getContentPane().add(new jPanelEditDataKuliah(frame,getMainMenu().getDbc(),
+                                                                          (String) model.getValueAt(modelRow, 0),
+                                                                          (String) model.getValueAt(modelRow, 1),
+                                                                          (int) model.getValueAt(modelRow, 2)));
+                    frame.pack();
+                    frame.setVisible(true);
+                    showDataKuliah();
                 }
             };
             for (int i=0;i<allkuliah.length;i++){
