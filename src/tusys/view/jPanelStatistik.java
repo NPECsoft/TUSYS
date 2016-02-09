@@ -6,6 +6,10 @@
 package tusys.view;
 
 import java.awt.Color;
+import java.sql.Date;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
 import org.jfree.chart.JFreeChart;
@@ -21,7 +25,19 @@ import tusys.database.*;
 public class jPanelStatistik extends javax.swing.JPanel {
     private Statistic stat = new Statistic();
     private MainMenu mainMenu;
+    private Date tanggal_mulai;
+    private Date tanggal_selesai;
+    private String jenis_kegiatan;
 
+    public MainMenu getMainMenu() {
+        return mainMenu;
+    }
+
+    public void setMainMenu(MainMenu mainMenu) {
+        this.mainMenu = mainMenu;
+    }
+
+    
     /**
      * Creates new form jPanelStatistik
      */
@@ -154,6 +170,17 @@ public class jPanelStatistik extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        jenis_kegiatan = jComboBox1.getSelectedItem().toString();
+        tanggal_mulai = Date.valueOf(jTextField1.getText());
+        tanggal_selesai = Date.valueOf(jTextField2.getText());
+        
+        //ini masih hasilnya null pointer :(
+        try {
+            stat = mainMenu.getDbc().getStatistic(jenis_kegiatan, tanggal_mulai, tanggal_selesai);
+        } catch (SQLException ex) {
+            Logger.getLogger(jPanelStatistik.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         dataset.setValue(80,"Frekuensi","7601");
         dataset.setValue(70,"Frekuensi","7602");
@@ -187,4 +214,5 @@ public class jPanelStatistik extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
+    
 }
