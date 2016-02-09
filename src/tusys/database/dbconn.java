@@ -11,11 +11,12 @@ package tusys.database;
  */
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class dbconn {
     // JDBC driver name and database URL
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://localhost:3306/";
+    final String DB_URL;
     
     // Connection
     Connection conn = null;
@@ -25,7 +26,8 @@ public class dbconn {
     static String user;
     static String pass;
     
-    public dbconn(String _user, String _pass) throws SQLException, ClassNotFoundException {
+    public dbconn(String DB_URL, String _user, String _pass) throws SQLException, ClassNotFoundException {
+        this.DB_URL=DB_URL;
         initializeDBCONN(_user, _pass);
     }
     
@@ -187,5 +189,182 @@ public class dbconn {
         }
         
         System.out.println("Database successfully closed.");
+    }
+    
+    public Kuliah[] getAllKuliah() throws SQLException{
+        String sql;
+        
+        stmt = conn.createStatement();
+        sql = "SELECT * FROM kuliah";
+        
+        ResultSet rs = stmt.executeQuery(sql);
+        ArrayList<Kuliah> retv = new ArrayList<>();
+        while (rs.next()){
+            Kuliah k = new Kuliah();
+            k.setKode_kuliah(rs.getString("kode_kuliah"));
+            k.setNama_kuliah(rs.getString("nama_kuliah"));
+            k.setJumlah_peserta(rs.getInt("jumlah_peserta"));
+            retv.add(k);
+        }
+
+        return retv.toArray(new Kuliah[retv.size()]);
+    }
+    
+    public void deleteKuliahByKode(String kode_kuliah) throws SQLException{
+        String sql;
+        stmt = conn.createStatement();
+        sql = "DELETE FROM kuliah WHERE kode_kuliah=?";
+        
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setString(1, kode_kuliah);
+        
+        ps.executeUpdate();
+        ps.close();
+    }
+    
+    public void editKuliahByKode(String kode_kuliah_target, Kuliah k_databaru) throws SQLException{
+        String sql;
+        stmt = conn.createStatement();
+        sql = "UPDATE kuliah SET kode_kuliah=?,nama_kuliah=?,jumlah_peserta=? WHERE kode_kuliah=?; ";
+        
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setString(1, k_databaru.getKode_kuliah());
+        ps.setString(2, k_databaru.getNama_kuliah());
+        ps.setInt(3, k_databaru.getJumlah_peserta());
+        ps.setString(4, kode_kuliah_target);
+        
+        ps.executeUpdate();
+        ps.close();
+    }
+    
+    public void addKuliah(Kuliah k_databaru)throws SQLException{
+        String sql;
+        stmt = conn.createStatement();
+        sql = "INSERT INTO kuliah (kode_kuliah, nama_kuliah, jumlah_peserta) VALUES (?, ?, ?)";
+        
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setString(1, k_databaru.getKode_kuliah());
+        ps.setString(2, k_databaru.getNama_kuliah());
+        ps.setInt(3, k_databaru.getJumlah_peserta());
+        
+        ps.executeUpdate();
+        ps.close();
+    }
+    
+    public Ruang[] getAllRuang() throws SQLException{
+        String sql;
+        
+        stmt = conn.createStatement();
+        sql = "SELECT * FROM ruang";
+        
+        ResultSet rs = stmt.executeQuery(sql);
+        
+        ArrayList<Ruang> retv = new ArrayList<>();
+        while (rs.next()){
+            Ruang r = new Ruang(rs.getInt("id"),rs.getString("nama_ruang"),rs.getString("jenis_ruang"),rs.getInt("kapasitas_ruang"),rs.getString("fasilitas"));
+            retv.add(r);
+        }
+
+        return retv.toArray(new Ruang[retv.size()]);
+    }
+    
+    public void deleteRuangById(int id) throws SQLException{
+        String sql;
+        stmt = conn.createStatement();
+        sql = "DELETE FROM ruang WHERE id=?";
+        
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setInt(1,id);
+        
+        ps.executeUpdate();
+        ps.close();
+    }
+    
+    public void editRuangById(int id, Ruang r_databaru) throws SQLException{
+        String sql;
+        stmt = conn.createStatement();
+        sql = "UPDATE ruang SET nama_ruang=?,jenis_ruang=?,kapasitas_ruang=?,fasilitas=? WHERE id=?; ";
+        
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setString(1, r_databaru.getNama_ruang());
+        ps.setString(2, r_databaru.getJenis_ruang());
+        ps.setInt(3, r_databaru.getKapasitas_ruang());
+        ps.setString(4, r_databaru.getFasilitas());
+        ps.setInt(5, id);
+        
+        ps.executeUpdate();
+        ps.close();
+    }
+    
+    public void addRuang(Ruang r_databaru)throws SQLException{
+        String sql;
+        stmt = conn.createStatement();
+        sql = "INSERT INTO ruang (nama_ruang, jenis_ruang, kapasitas_ruang, fasilitas) VALUES (?, ?, ?, ?)";
+        
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setString(1, r_databaru.getNama_ruang());
+        ps.setString(2, r_databaru.getJenis_ruang());
+        ps.setInt(3, r_databaru.getKapasitas_ruang());
+        ps.setString(4, r_databaru.getFasilitas());
+        
+        ps.executeUpdate();
+        ps.close();
+    }
+    
+    public Pemesanan[] getPemesanan(int id_ruang, Date tanggal_mulai, Date tanggal_selesai) throws SQLException{
+        String sql;
+        
+        sql = "SELECT * FROM pemesanan_ruangan WHERE id_ruang=? AND tanggal <= ? AND tanggal >= ?";
+        
+        
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setInt(1, id_ruang);
+        ps.setDate(2, tanggal_selesai);
+        ps.setDate(3, tanggal_mulai);
+        
+        ResultSet rs = ps.executeQuery();
+        
+        ArrayList<Pemesanan> retv = new ArrayList<>();
+        while (rs.next()){
+            Pemesanan p = new Pemesanan();
+            p.setId(rs.getInt("id"));
+            p.setNama_kegiatan(rs.getString("nama_kegiatan"));
+            p.setJenis_kegiatan(rs.getString("jenis_kegiatan"));
+            p.setStart_time(rs.getTime("start_time"));
+            p.setFinish_time(rs.getTime("finish_time"));
+            p.setTanggal(rs.getDate("tanggal"));
+            p.setId_ruang(rs.getInt("id_ruang"));
+            retv.add(p);
+        }
+
+        return retv.toArray(new Pemesanan[retv.size()]);        
+    }
+   
+    public Statistic getStatistic(String jenis_kegiatan, Date tanggal_mulai, Date tanggal_selesai) throws SQLException{
+        String sql;
+        Statistic stat = new Statistic();
+        
+        Ruang[] ruangan = getAllRuang();
+        
+        for (int i = 0; i < ruangan.length; i++) {
+            sql = "SELECT COUNT(*) AS jumlah_penggunaan FROM penggunaan_ruangan WHERE jenis_kegiatan = ? AND tanggal <= ? AND tanggal >= ? AND id_ruang = ?";
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, jenis_kegiatan);
+            ps.setDate(2, tanggal_selesai);
+            ps.setDate(3, tanggal_mulai);
+            ps.setInt(4, ruangan[i].getId());
+
+            ResultSet rs = ps.executeQuery();
+            
+            stat.getRuangan().add(ruangan[i].getNama_ruang());
+            System.out.println(ruangan[i].getNama_ruang());
+            stat.getFrekuensi().add(rs.getInt("jumlah_penggunaan"));
+            System.out.println(rs.getInt("jumlah_penggunaan"));
+            stat.setJenisKegiatan(jenis_kegiatan);
+            System.out.println(jenis_kegiatan);
+        }
+        
+        return stat;
     }
 }

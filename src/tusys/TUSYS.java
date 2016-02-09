@@ -7,7 +7,7 @@ package tusys;
 
 import java.sql.*;
 import tusys.database.DatabaseLoginJDialog;
-import tusys.database.MainMenu;
+import tusys.view.MainMenu;
 import tusys.database.dbconn;
 
 /**
@@ -23,8 +23,10 @@ public class TUSYS {
         MainMenu mm = new MainMenu();
         DatabaseLoginJDialog dbLoginDialog = new DatabaseLoginJDialog(mm, true);
         dbLoginDialog.setVisible(true);
+        dbc = new dbconn(dbLoginDialog.getDBURL(),dbLoginDialog.getDBUsername(),dbLoginDialog.getDBPassword());
+        dbc.useDB();
+        mm.setDbc(dbc);
         mm.setVisible(true);
-        dbc = new dbconn(dbLoginDialog.getDBUsername(), dbLoginDialog.getDBPassword());
     }
 
     public TUSYS() throws SQLException, ClassNotFoundException {
