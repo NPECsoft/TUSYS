@@ -339,4 +339,29 @@ public class dbconn {
 
         return retv.toArray(new Pemesanan[retv.size()]);        
     }
+   
+    public Statistic getStatistic(int jenis_kegiatan, Date tanggal_mulai, Date tanggal_selesai) throws SQLException{
+        String sql;
+        Statistic stat = new Statistic();
+        
+        Ruang[] ruangan = getAllRuang();
+        
+        for (int i = 0; i < ruangan.length; i++) {
+            sql = "SELECT COUNT(*) AS jumlah_penggunaan FROM penggunaan_ruangan WHERE jenis_kegiatan = ? AND tanggal <= ? AND tanggal >= ? AND id_ruang = ?";
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, jenis_kegiatan);
+            ps.setDate(2, tanggal_selesai);
+            ps.setDate(3, tanggal_mulai);
+            ps.setInt(4, ruangan[i].getId());
+
+            ResultSet rs = ps.executeQuery();
+            
+            stat.getRuangan().add(ruangan[i].getNama_ruang());
+            stat.getFrekuensi().add(rs.getInt("jumlah_penggunaan"));
+            stat.setJenisKegiatan(jenis_kegiatan);
+        }
+        
+        return stat;
+    }
 }
