@@ -18,6 +18,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import tusys.database.Kuliah;
+import tusys.database.Ruang;
 
 /**
  *
@@ -72,6 +73,11 @@ public class jPanelData extends javax.swing.JPanel {
         });
 
         jRadioButtonRuang.setText("Data Ruangan");
+        jRadioButtonRuang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonRuangActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Jenis Data");
 
@@ -124,6 +130,86 @@ public class jPanelData extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void showDataRuang(){try {
+            Ruang [] allruang = mainMenu.getDbc().getAllRuang();
+            DefaultTableModel model = new DefaultTableModel();
+            model.addColumn("id");
+            model.addColumn("Nama Ruang");
+            model.addColumn("Jenis Ruang");
+            model.addColumn("Kapasitas Ruang");
+            model.addColumn("Fasilitas");
+            model.addColumn("");
+            model.addColumn("");
+            
+            //aksi hapus
+            Action delete = new AbstractAction()
+            {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    JOptionPane.showMessageDialog(null, "operasi belum didukung");
+                    /*JTable table = (JTable)e.getSource();
+                    int modelRow = Integer.valueOf( e.getActionCommand() );
+                    int id = (int) table.getModel().getValueAt(modelRow, 0);
+                    int confirm = JOptionPane.showConfirmDialog(null, "Yakin menghapus kuliah " + kodekuliah + " ?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+                    if (confirm==JOptionPane.YES_OPTION){
+                        try {
+                            getMainMenu().getDbc().deleteKuliahByKode(kodekuliah);
+                        } catch (SQLException ex) {
+                            JOptionPane.showMessageDialog(null, "error: " + ex);
+                            Logger.getLogger(jPanelData.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                    showDataKuliah();*/
+                }
+            };
+            //aksi ubah
+            Action edit = new AbstractAction()
+            {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    JOptionPane.showMessageDialog(null, "operasi belum didukung");
+//                    
+//                    JTable table = (JTable)e.getSource();
+//                    int modelRow = Integer.valueOf( e.getActionCommand() );
+//                    
+//                    TableModel model = table.getModel();
+//                    final JDialog frame = new JDialog(jPanelData.this.getMainMenu(), "Ubah Data Kuliah", true);
+//                    frame.getContentPane().add(new jPanelEditDataKuliah(frame,getMainMenu().getDbc(),
+//                                                                          (String) model.getValueAt(modelRow, 0),
+//                                                                          (String) model.getValueAt(modelRow, 1),
+//                                                                          (int) model.getValueAt(modelRow, 2)));
+//                    frame.pack();
+//                    frame.setVisible(true);
+//                    showDataKuliah();
+                }
+            };
+            for (int i=0;i<allruang.length;i++){
+                Object [] r = new Object[7];
+                r[0]=allruang[i].getId();
+                r[1]=allruang[i].getNama_ruang();
+                r[2]=allruang[i].getJenis_ruang();
+                r[3]=allruang[i].getKapasitas_ruang();
+                r[4]=allruang[i].getFasilitas();
+                r[5]="Ubah";
+                r[6]="Hapus";
+                model.addRow(r);
+            }
+            jTabelKuliahdanRuang.setModel(model);
+            
+            ButtonColumn buttonColumnDelete = new ButtonColumn(jTabelKuliahdanRuang, delete, 5);
+            buttonColumnDelete.setMnemonic(KeyEvent.VK_D);
+
+            ButtonColumn buttonColumnEdit = new ButtonColumn(jTabelKuliahdanRuang, edit, 6);
+            buttonColumnEdit.setMnemonic(KeyEvent.VK_D);
+            
+            jTabelKuliahdanRuang.removeColumn(jTabelKuliahdanRuang.getColumnModel().getColumn(0));
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error" + ex);
+            Logger.getLogger(jPanelData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
     private void showDataKuliah(){
         try {
             Kuliah [] allkuliah = mainMenu.getDbc().getAllKuliah();
@@ -213,7 +299,22 @@ public class jPanelData extends javax.swing.JPanel {
             showDataKuliah();
             
         }
+        if (jRadioButtonRuang.isSelected()){
+            final JDialog frame = new JDialog(jPanelData.this.getMainMenu(), "Tambah Data Ruang", true);
+            frame.getContentPane().add(new jPanelAddDataRuang(frame,this.getMainMenu().getDbc()));
+            
+            frame.pack();
+            frame.setVisible(true);
+            
+            showDataRuang();
+            
+        }
     }//GEN-LAST:event_jButtonTambahActionPerformed
+
+    private void jRadioButtonRuangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonRuangActionPerformed
+        // TODO add your handling code here:
+        showDataRuang();
+    }//GEN-LAST:event_jRadioButtonRuangActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

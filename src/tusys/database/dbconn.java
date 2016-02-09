@@ -249,4 +249,63 @@ public class dbconn {
         ps.executeUpdate();
         ps.close();
     }
+    
+    public Ruang[] getAllRuang() throws SQLException{
+        String sql;
+        
+        stmt = conn.createStatement();
+        sql = "SELECT * FROM ruang";
+        
+        ResultSet rs = stmt.executeQuery(sql);
+        
+        ArrayList<Ruang> retv = new ArrayList<>();
+        while (rs.next()){
+            Ruang r = new Ruang(rs.getInt("id"),rs.getString("nama_ruang"),rs.getString("jenis_ruang"),rs.getInt("kapasitas_ruang"),rs.getString("fasilitas"));
+            retv.add(r);
+        }
+
+        return retv.toArray(new Ruang[retv.size()]);
+    }
+    
+    public void deleteRuangById(int id) throws SQLException{
+        String sql;
+        stmt = conn.createStatement();
+        sql = "DELETE FROM ruang WHERE id=?";
+        
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setInt(1,id);
+        
+        ps.executeUpdate();
+        ps.close();
+    }
+    
+    public void editRuangById(int id, Ruang r_databaru) throws SQLException{
+        String sql;
+        stmt = conn.createStatement();
+        sql = "UPDATE ruang SET nama_ruang=?,jenis_ruang=?,kapasitas_ruang=?,fasilitas=?; ";
+        
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setString(1, r_databaru.getNama_ruang());
+        ps.setString(2, r_databaru.getJenis_ruang());
+        ps.setInt(3, r_databaru.getKapasitas_ruang());
+        ps.setString(4, r_databaru.getFasilitas());
+        
+        ps.executeUpdate();
+        ps.close();
+    }
+    
+    public void addRuang(Ruang r_databaru)throws SQLException{
+        String sql;
+        stmt = conn.createStatement();
+        sql = "INSERT INTO ruang (nama_ruang, jenis_ruang, kapasitas_ruang, fasilitas) VALUES (?, ?, ?, ?)";
+        
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setString(1, r_databaru.getNama_ruang());
+        ps.setString(2, r_databaru.getJenis_ruang());
+        ps.setInt(3, r_databaru.getKapasitas_ruang());
+        ps.setString(4, r_databaru.getFasilitas());
+        
+        ps.executeUpdate();
+        ps.close();
+    }
 }
