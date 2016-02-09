@@ -173,7 +173,6 @@ public class jPanelAddDataKuliah extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private JDialog closeTarget;
-    private String target_kode_kuliah;
     private dbconn targetdbconn;
     
     /**
@@ -188,20 +187,6 @@ public class jPanelAddDataKuliah extends javax.swing.JPanel {
      */
     public void setCloseTarget(JDialog closeTarget) {
         this.closeTarget = closeTarget;
-    }
-
-    /**
-     * @return the target_kode_kuliah
-     */
-    public String getTarget_kode_kuliah() {
-        return target_kode_kuliah;
-    }
-
-    /**
-     * @param target_kode_kuliah the target_kode_kuliah to set
-     */
-    public void setTarget_kode_kuliah(String target_kode_kuliah) {
-        this.target_kode_kuliah = target_kode_kuliah;
     }
 
     /**
