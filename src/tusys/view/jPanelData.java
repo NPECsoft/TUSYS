@@ -50,6 +50,7 @@ public class jPanelData extends javax.swing.JPanel {
         jRadioButtonKuliah = new javax.swing.JRadioButton();
         jRadioButtonRuang = new javax.swing.JRadioButton();
         jLabel2 = new javax.swing.JLabel();
+        jButtonTambah = new javax.swing.JButton();
 
         jLabel1.setText("TODO Panel Data");
 
@@ -74,6 +75,13 @@ public class jPanelData extends javax.swing.JPanel {
 
         jLabel2.setText("Jenis Data");
 
+        jButtonTambah.setText("Tambah");
+        jButtonTambah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonTambahActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -93,6 +101,10 @@ public class jPanelData extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(jRadioButtonRuang)
                         .addGap(40, 40, 40))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(160, 160, 160)
+                .addComponent(jButtonTambah)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,7 +118,9 @@ public class jPanelData extends javax.swing.JPanel {
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonTambah)
+                .addContainerGap(18, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -187,9 +201,24 @@ public class jPanelData extends javax.swing.JPanel {
 // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButtonKuliahActionPerformed
 
+    private void jButtonTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTambahActionPerformed
+        // TODO add your handling code here:
+        if (jRadioButtonKuliah.isSelected()){
+            final JDialog frame = new JDialog(jPanelData.this.getMainMenu(), "Tambah Data Kuliah", true);
+            frame.getContentPane().add(new jPanelAddDataKuliah(frame,this.getMainMenu().getDbc()));
+            
+            frame.pack();
+            frame.setVisible(true);
+            
+            showDataKuliah();
+            
+        }
+    }//GEN-LAST:event_jButtonTambahActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton jButtonTambah;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JRadioButton jRadioButtonKuliah;

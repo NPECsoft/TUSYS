@@ -235,4 +235,18 @@ public class dbconn {
         ps.executeUpdate();
         ps.close();
     }
+    
+    public void addKuliah(Kuliah k_databaru)throws SQLException{
+        String sql;
+        stmt = conn.createStatement();
+        sql = "INSERT INTO kuliah (kode_kuliah, nama_kuliah, jumlah_peserta) VALUES (?, ?, ?)";
+        
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setString(1, k_databaru.getKode_kuliah());
+        ps.setString(2, k_databaru.getNama_kuliah());
+        ps.setInt(3, k_databaru.getJumlah_peserta());
+        
+        ps.executeUpdate();
+        ps.close();
+    }
 }
