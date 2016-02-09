@@ -15,8 +15,8 @@ import java.util.ArrayList;
 public class Statistic {
     private ArrayList<String> ruangan = new ArrayList<String>();
     private ArrayList<Integer> frekuensi = new ArrayList<Integer>(); 
-    private int jenisKegiatan = 0; //id jenis kegiatan : 0 kuliah, 1 seminar, 2 himpunan, 3 unit
-
+    private String jenisKegiatan = "kuliah"; 
+    
     public ArrayList<String> getRuangan() {
         return ruangan;
     }
@@ -33,11 +33,11 @@ public class Statistic {
         this.frekuensi = frekuensi;
     }
 
-    public int getJenisKegiatan() {
+    public String getJenisKegiatan() {
         return jenisKegiatan;
     }
 
-    public void setJenisKegiatan(int jenisKegiatan) {
+    public void setJenisKegiatan(String jenisKegiatan) {
         this.jenisKegiatan = jenisKegiatan;
     }
     
