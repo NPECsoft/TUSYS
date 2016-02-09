@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class dbconn {
     // JDBC driver name and database URL
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://localhost:3306/";
+    final String DB_URL;
     
     // Connection
     Connection conn = null;
@@ -26,7 +26,8 @@ public class dbconn {
     static String user;
     static String pass;
     
-    public dbconn(String _user, String _pass) throws SQLException, ClassNotFoundException {
+    public dbconn(String DB_URL, String _user, String _pass) throws SQLException, ClassNotFoundException {
+        this.DB_URL=DB_URL;
         initializeDBCONN(_user, _pass);
     }
     
@@ -308,5 +309,34 @@ public class dbconn {
         
         ps.executeUpdate();
         ps.close();
+    }
+    
+    public Pemesanan[] getPemesanan(int id_ruang, Date tanggal_mulai, Date tanggal_selesai) throws SQLException{
+        String sql;
+        
+        sql = "SELECT * FROM pemesanan_ruangan WHERE id_ruang=? AND tanggal <= ? AND tanggal >= ?";
+        
+        
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setInt(1, id_ruang);
+        ps.setDate(2, tanggal_selesai);
+        ps.setDate(3, tanggal_mulai);
+        
+        ResultSet rs = ps.executeQuery();
+        
+        ArrayList<Pemesanan> retv = new ArrayList<>();
+        while (rs.next()){
+            Pemesanan p = new Pemesanan();
+            p.setId(rs.getInt("id"));
+            p.setNama_kegiatan(rs.getString("nama_kegiatan"));
+            p.setJenis_kegiatan(rs.getString("jenis_kegiatan"));
+            p.setStart_time(rs.getTime("start_time"));
+            p.setFinish_time(rs.getTime("finish_time"));
+            p.setTanggal(rs.getDate("tanggal"));
+            p.setId_ruang(rs.getInt("id_ruang"));
+            retv.add(p);
+        }
+
+        return retv.toArray(new Pemesanan[retv.size()]);        
     }
 }

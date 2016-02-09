@@ -23,7 +23,7 @@ public class TUSYS {
         MainMenu mm = new MainMenu();
         DatabaseLoginJDialog dbLoginDialog = new DatabaseLoginJDialog(mm, true);
         dbLoginDialog.setVisible(true);
-        dbc = new dbconn(dbLoginDialog.getDBUsername(), dbLoginDialog.getDBPassword());
+        dbc = new dbconn(dbLoginDialog.getDBURL(),dbLoginDialog.getDBUsername(),dbLoginDialog.getDBPassword());
         dbc.useDB();
         mm.setDbc(dbc);
         mm.setVisible(true);
