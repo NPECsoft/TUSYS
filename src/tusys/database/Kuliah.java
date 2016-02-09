@@ -68,4 +68,8 @@ public class Kuliah {
     public void setJumlah_peserta(int jumlah_peserta) {
         this.jumlah_peserta = jumlah_peserta;
     }
+    
+    public String toString(){
+        return getKode_kuliah() + " - " + getNama_kuliah();
+    }
 }
