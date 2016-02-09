@@ -67,7 +67,7 @@ public class jPanelEditDataRuang extends javax.swing.JPanel {
 
         jLabel5.setText("Kapasitas Ruangan");
 
-        jButtonTambah.setText("Tambah");
+        jButtonTambah.setText("Ubah");
         jButtonTambah.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonTambahActionPerformed(evt);
@@ -81,7 +81,7 @@ public class jPanelEditDataRuang extends javax.swing.JPanel {
             }
         });
 
-        jLabelJudul.setText("Tambah Data Ruangan");
+        jLabelJudul.setText("Ubah Data Ruangan");
 
         jLabel2.setText("Nama Ruangan");
 

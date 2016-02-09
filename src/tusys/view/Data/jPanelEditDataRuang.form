@@ -98,7 +98,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButtonTambah">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Tambah"/>
+        <Property name="text" type="java.lang.String" value="Ubah"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonTambahActionPerformed"/>
@@ -114,7 +114,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelJudul">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Tambah Data Ruangan"/>
+        <Property name="text" type="java.lang.String" value="Ubah Data Ruangan"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">

@@ -174,7 +174,7 @@ public class jPanelData extends javax.swing.JPanel {
                     int modelRow = Integer.valueOf( e.getActionCommand() );
                     
                     TableModel model = table.getModel();
-                    final JDialog frame = new JDialog(jPanelData.this.getMainMenu(), "Ubah Data Kuliah", true);
+                    final JDialog frame = new JDialog(jPanelData.this.getMainMenu(), "Ubah Data Ruang", true);
                     frame.getContentPane().add(new jPanelEditDataRuang(frame,getMainMenu().getDbc(),
                                                                           (int) model.getValueAt(modelRow, 0),
                                                                           (String) model.getValueAt(modelRow, 1),
