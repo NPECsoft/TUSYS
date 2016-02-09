@@ -169,20 +169,21 @@ public class jPanelData extends javax.swing.JPanel {
             {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    JOptionPane.showMessageDialog(null, "operasi belum didukung");
-//                    
-//                    JTable table = (JTable)e.getSource();
-//                    int modelRow = Integer.valueOf( e.getActionCommand() );
-//                    
-//                    TableModel model = table.getModel();
-//                    final JDialog frame = new JDialog(jPanelData.this.getMainMenu(), "Ubah Data Kuliah", true);
-//                    frame.getContentPane().add(new jPanelEditDataKuliah(frame,getMainMenu().getDbc(),
-//                                                                          (String) model.getValueAt(modelRow, 0),
-//                                                                          (String) model.getValueAt(modelRow, 1),
-//                                                                          (int) model.getValueAt(modelRow, 2)));
-//                    frame.pack();
-//                    frame.setVisible(true);
-//                    showDataKuliah();
+                    
+                    JTable table = (JTable)e.getSource();
+                    int modelRow = Integer.valueOf( e.getActionCommand() );
+                    
+                    TableModel model = table.getModel();
+                    final JDialog frame = new JDialog(jPanelData.this.getMainMenu(), "Ubah Data Kuliah", true);
+                    frame.getContentPane().add(new jPanelEditDataRuang(frame,getMainMenu().getDbc(),
+                                                                          (int) model.getValueAt(modelRow, 0),
+                                                                          (String) model.getValueAt(modelRow, 1),
+                                                                          (String) model.getValueAt(modelRow, 2),
+                                                                          (int) model.getValueAt(modelRow, 3),
+                                                                          (String) model.getValueAt(modelRow, 4)));
+                    frame.pack();
+                    frame.setVisible(true);
+                    showDataRuang();
                 }
             };
             for (int i=0;i<allruang.length;i++){
