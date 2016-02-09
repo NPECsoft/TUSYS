@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tusys.view;
+package tusys.view.Data;
 
 import java.awt.Component;
 import java.sql.SQLException;

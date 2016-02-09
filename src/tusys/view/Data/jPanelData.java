@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tusys.view;
+package tusys.view.Data;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -19,6 +19,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import tusys.database.Kuliah;
 import tusys.database.Ruang;
+import tusys.view.ButtonColumn;
+import tusys.view.MainMenu;
 
 /**
  *
