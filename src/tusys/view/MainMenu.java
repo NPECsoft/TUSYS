@@ -59,7 +59,7 @@ public class MainMenu extends javax.swing.JFrame {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanelData1 = new tusys.view.Data.jPanelData();
-        jPanelPemesanan1 = new tusys.view.jPanelPemesanan();
+        jPanelPemesanan1 = new tusys.view.Pemesanan.jPanelPemesanan();
         jPanelKetersediaanPemesanan1 = new tusys.view.jPanelKetersediaanPemesanan();
         jPanelTransaksi1 = new tusys.view.jPanelTransaksi();
         jPanelKetersediaanTransaksi1 = new tusys.view.jPanelKetersediaanTransaksi();
@@ -149,7 +149,7 @@ public class MainMenu extends javax.swing.JFrame {
     private tusys.view.Data.jPanelData jPanelData1;
     private tusys.view.jPanelKetersediaanPemesanan jPanelKetersediaanPemesanan1;
     private tusys.view.jPanelKetersediaanTransaksi jPanelKetersediaanTransaksi1;
-    private tusys.view.jPanelPemesanan jPanelPemesanan1;
+    private tusys.view.Pemesanan.jPanelPemesanan jPanelPemesanan1;
     private tusys.view.jPanelStatistik jPanelStatistik1;
     private tusys.view.jPanelTransaksi jPanelTransaksi1;
     private javax.swing.JTabbedPane jTabbedPane1;

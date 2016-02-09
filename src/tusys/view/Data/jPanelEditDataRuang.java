@@ -167,6 +167,15 @@ public class jPanelEditDataRuang extends javax.swing.JPanel {
 try {
             // TODO add your handling code here:
             //validasi input
+            try{
+                Integer.parseInt(jTextFieldKapasitasRuangan.getText());
+            }catch(NumberFormatException e){
+                JOptionPane.showMessageDialog(null, "angka kapasitas salah");
+                return;
+            }
+            
+            //to query
+            
             
             Ruang r = new Ruang(getTargetID(),jTextFieldNamaRuangan.getText(), 
                     (String)jComboBoxJenisRuangan.getSelectedItem(),
