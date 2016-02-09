@@ -282,13 +282,14 @@ public class dbconn {
     public void editRuangById(int id, Ruang r_databaru) throws SQLException{
         String sql;
         stmt = conn.createStatement();
-        sql = "UPDATE ruang SET nama_ruang=?,jenis_ruang=?,kapasitas_ruang=?,fasilitas=?; ";
+        sql = "UPDATE ruang SET nama_ruang=?,jenis_ruang=?,kapasitas_ruang=?,fasilitas=? WHERE id=?; ";
         
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setString(1, r_databaru.getNama_ruang());
         ps.setString(2, r_databaru.getJenis_ruang());
         ps.setInt(3, r_databaru.getKapasitas_ruang());
         ps.setString(4, r_databaru.getFasilitas());
+        ps.setInt(5, id);
         
         ps.executeUpdate();
         ps.close();
