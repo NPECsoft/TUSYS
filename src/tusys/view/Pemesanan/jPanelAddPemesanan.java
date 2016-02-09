@@ -15,6 +15,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import tusys.database.Kuliah;
+import tusys.database.Pemesanan;
 import tusys.database.Ruang;
 import tusys.database.dbconn;
 
@@ -37,6 +38,7 @@ public class jPanelAddPemesanan extends javax.swing.JPanel {
         this.sesuaikanFrekuensi();
         this.sesuaikanNamaKegiatan();
         this.refreshKuliah();
+        this.refreshRuang();
     }
     
     /**
@@ -67,6 +69,8 @@ public class jPanelAddPemesanan extends javax.swing.JPanel {
         jComboBoxFrekuensi = new javax.swing.JComboBox();
         jLabelKuliah = new javax.swing.JLabel();
         jComboBoxKuliah = new javax.swing.JComboBox();
+        jLabel2 = new javax.swing.JLabel();
+        jComboBoxRuang = new javax.swing.JComboBox();
 
         jButtonTambah.setText("Tambah");
         jButtonTambah.addActionListener(new java.awt.event.ActionListener() {
@@ -165,35 +169,16 @@ public class jPanelAddPemesanan extends javax.swing.JPanel {
             }
         });
 
+        jLabel2.setText("Ruang");
+
+        jComboBoxRuang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jButtonBatal, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonTambah, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelNamaKegiatan)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jTextFieldWaktuMulai, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jTextFieldNamaKegiatan, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
-                                    .addComponent(jComboBoxJenisKegiatan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jTextFieldWaktuSelesai, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabelTanggalSelesai)
-                                    .addComponent(jTextFieldTanggalSelesai, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jComboBoxKuliah, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -209,19 +194,45 @@ public class jPanelAddPemesanan extends javax.swing.JPanel {
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jComboBoxFrekuensi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jButtonBatal, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButtonTambah, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabelNamaKegiatan)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jTextFieldWaktuMulai, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabelKuliah)
+                                    .addComponent(jLabel2))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jTextFieldNamaKegiatan, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                                    .addComponent(jComboBoxJenisKegiatan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jTextFieldWaktuSelesai, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabelTanggalSelesai)
+                                    .addComponent(jTextFieldTanggalSelesai, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jComboBoxKuliah, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jComboBoxRuang, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabelKuliah)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabelJudul)
-                .addGap(18, 18, 18)
+                .addGap(2, 2, 2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jComboBoxRuang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldNamaKegiatan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelNamaKegiatan))
@@ -269,29 +280,39 @@ public class jPanelAddPemesanan extends javax.swing.JPanel {
         // TODO add your handling code here:
         getCloseTarget().setVisible(false);
     }//GEN-LAST:event_jButtonBatalActionPerformed
-
+    
     private void jButtonTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTambahActionPerformed
         try {
-            JOptionPane.showMessageDialog(null,"not implemented");
             // TODO add your handling code here:
             //validasi input
             Time start_time = null;
+            String start_time_str = jTextFieldWaktuMulai.getText();
             try{
-                start_time = Time.valueOf(jTextFieldWaktuMulai.getText());
+                if (start_time_str.length()<=5) start_time_str+=":00";
+                start_time = Time.valueOf(start_time_str);
             }catch(IllegalArgumentException e){
-                JOptionPane.showMessageDialog(null, "format waktu harus hh:mm");
+                JOptionPane.showMessageDialog(null, "format waktu harus hh:mm. diterima: " + start_time_str);
+                return;
             }
             Time finish_time = null;
+            String finish_time_str = jTextFieldWaktuSelesai.getText();
             try{
-                finish_time = Time.valueOf(jTextFieldWaktuSelesai.getText());
+                if (finish_time_str.length()<=5) finish_time_str+=":00";
+                finish_time = Time.valueOf(finish_time_str);
             }catch(IllegalArgumentException e){
-                JOptionPane.showMessageDialog(null, "format waktu harus hh:mm");
+                JOptionPane.showMessageDialog(null, "format waktu harus hh:mm. diterima: " + finish_time_str);
+                return;
+            }
+            if (finish_time.before(start_time)){
+                JOptionPane.showMessageDialog(null, "waktu mulai harus sebelum waktu selesai");
+                return;
             }
             Date start_date = null;
             try{
                 start_date = Date.valueOf(jTextFieldTanggalMulai.getText());
             }catch(IllegalArgumentException e){
                 JOptionPane.showMessageDialog(null, "format tanggal harus yyyy-mm-dd");
+                return;
             }
             Date end_date = null;
             if (!frekuensiSekali())
@@ -299,19 +320,55 @@ public class jPanelAddPemesanan extends javax.swing.JPanel {
                 end_date = Date.valueOf(jTextFieldTanggalSelesai.getText());
             }catch(IllegalArgumentException e){
                 JOptionPane.showMessageDialog(null, "format tanggal harus yyyy-mm-dd");
+                return;
             }
-//            
-//            //cek apakah beririsan
-//            
-//            //to query
-//            
-//            Ruang r = new Ruang(null,jTextFieldNamaKegiatan.getText(), 
-//                    (String)jComboBoxJenisKegiatan.getSelectedItem(),
-//                    Integer.parseInt(jTextFieldKapasitasRuangan.getText()),
-//                    jTextFieldFasilitas.getText());
-//            
-//            System.out.println("check " + getTargetdbconn());
-//            getTargetdbconn().addRuang(r);
+            String nama_kegiatan = null;
+            Kuliah kuliah = null;
+            if (jenisKuliah()){
+                kuliah = (Kuliah) jComboBoxKuliah.getSelectedItem();
+                nama_kegiatan = kuliah.toString();
+            }else{
+                nama_kegiatan = jTextFieldNamaKegiatan.getText();
+            }
+            String jenis_kegiatan = jComboBoxJenisKegiatan.getSelectedItem().toString();
+            Ruang r = (Ruang) jComboBoxRuang.getSelectedItem();
+            Integer id_ruang = r.getId();
+            
+            //bikin objek pemesanannya
+            Pemesanan p = new Pemesanan();
+            p.setId(null);
+            p.setNama_kegiatan(nama_kegiatan);
+            p.setStart_time(start_time);
+            p.setFinish_time(finish_time);
+            p.setTanggal(start_date);
+            p.setJenis_kegiatan(nama_kegiatan);
+            p.setId_ruang(id_ruang);
+            
+            
+            
+            if (frekuensiSekali()){
+                //cek apakah beririsan
+                Pemesanan [] pemesananberirisan = getTargetdbconn().getPemesananBeririsan(p);
+                if (pemesananberirisan.length>0){
+                    String listp = "";
+                    for (Pemesanan pb : pemesananberirisan){
+                        listp+=pb.getNama_kegiatan()+" - " +
+                                pb.getJenis_kegiatan() + " - " +
+                                pb.getTanggal() + " - " + 
+                                "mulai" + pb.getStart_time() + " - " +
+                                "selesai" + pb.getFinish_time() + "\n";
+                    }
+                    JOptionPane.showMessageDialog(null, "Jadwal bentrok dengan : \n" + listp);
+                    return;
+                }
+                //to query
+                int id_pemesanan = getTargetdbconn().addPemesanan(p);
+                if (jenisKuliah())getTargetdbconn().addKuliahPemesan(kuliah.getKode_kuliah(), id_pemesanan);
+
+                System.out.println("check " + getTargetdbconn());
+            }else{
+                JOptionPane.showMessageDialog(null,"belum diimplementasi");
+            }
         } catch (/*SQL*/Exception ex) {
             JOptionPane.showMessageDialog(null, "error " + ex);
             Logger.getLogger(jPanelAddDataKuliah.class.getName()).log(Level.SEVERE, null, ex);
@@ -374,6 +431,17 @@ public class jPanelAddPemesanan extends javax.swing.JPanel {
         }
     }
     
+    private void refreshRuang(){
+        try {
+            Ruang [] r = getTargetdbconn().getAllRuang();
+            DefaultComboBoxModel model = new DefaultComboBoxModel(r);
+            jComboBoxRuang.setModel(model);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "error: " + ex);
+            Logger.getLogger(jPanelAddPemesanan.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     private void jComboBoxJenisKegiatanComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jComboBoxJenisKegiatanComponentShown
         // TODO add your handling code here:
         sesuaikanNamaKegiatan();
@@ -410,7 +478,9 @@ public class jPanelAddPemesanan extends javax.swing.JPanel {
     private javax.swing.JComboBox jComboBoxFrekuensi;
     private javax.swing.JComboBox jComboBoxJenisKegiatan;
     private javax.swing.JComboBox jComboBoxKuliah;
+    private javax.swing.JComboBox jComboBoxRuang;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
