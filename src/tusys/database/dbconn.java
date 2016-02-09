@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class dbconn {
     // JDBC driver name and database URL
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://localhost:3306/";
+    final String DB_URL;
     
     // Connection
     Connection conn = null;
@@ -26,7 +26,8 @@ public class dbconn {
     static String user;
     static String pass;
     
-    public dbconn(String _user, String _pass) throws SQLException, ClassNotFoundException {
+    public dbconn(String DB_URL, String _user, String _pass) throws SQLException, ClassNotFoundException {
+        this.DB_URL=DB_URL;
         initializeDBCONN(_user, _pass);
     }
     
