@@ -32,7 +32,7 @@ public class MainMenu extends javax.swing.JFrame {
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         
         jPanelData1.setMainMenu(this);
-        jPanelPemesanan1.setMainmenu(this);
+        jPanelPemesanan1.setMainMenu(this);
         //Data Button
 
         // Window Listeners
