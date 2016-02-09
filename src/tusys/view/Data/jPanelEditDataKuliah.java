@@ -147,6 +147,14 @@ public class jPanelEditDataKuliah extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null, "Panjang kode kuliah max. 6 karakter");
                 return;
             }
+            try{
+                Integer.parseInt(jTextFieldJumlahPeserta.getText());
+            }catch(NumberFormatException e){
+                JOptionPane.showMessageDialog(null, "angka jumlah peserta salah");
+                return;
+            }
+            
+            //to query
             Kuliah k = new Kuliah(jTextFieldKodeKuliah.getText(),
                     jTextFieldNamaKuliah.getText(),
                     Integer.parseInt(jTextFieldJumlahPeserta.getText()));
