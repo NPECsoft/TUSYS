@@ -22,6 +22,7 @@ import javax.swing.table.TableModel;
 import tusys.database.Pemesanan;
 import tusys.database.Ruang;
 import tusys.view.ButtonColumn;
+import tusys.view.Data.jPanelAddDataKuliah;
 import tusys.view.Data.jPanelData;
 import tusys.view.Data.jPanelEditDataKuliah;
 import tusys.view.MainMenu;
@@ -51,7 +52,7 @@ public class jPanelPemesanan extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jButtonTambah = new javax.swing.JButton();
         jComboBoxRuang = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
         jTextFieldTanggalMulai = new javax.swing.JTextField();
@@ -78,10 +79,10 @@ public class jPanelPemesanan extends javax.swing.JPanel {
 
         jLabel2.setText("Ruang");
 
-        jButton1.setText("Tambah");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonTambah.setText("Tambah");
+        jButtonTambah.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonTambahActionPerformed(evt);
             }
         });
 
@@ -144,7 +145,7 @@ public class jPanelPemesanan extends javax.swing.JPanel {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(jButtonTambah)
                 .addGap(253, 253, 253))
         );
         layout.setVerticalGroup(
@@ -165,7 +166,7 @@ public class jPanelPemesanan extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(jButtonTambah)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -175,10 +176,16 @@ public class jPanelPemesanan extends javax.swing.JPanel {
         refresh();
     }//GEN-LAST:event_jTextFieldTanggalMulaiActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTambahActionPerformed
         // TODO add your handling code here:
+        final JDialog frame = new JDialog(getMainMenu(), "Tambah Pemesanan", true);
+        frame.getContentPane().add(new jPanelAddPemesanan(frame,this.getMainMenu().getDbc()));
+
+        frame.pack();
+        frame.setVisible(true);
+
         refresh();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButtonTambahActionPerformed
 
     private void jComboBoxRuangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxRuangActionPerformed
         // TODO add your handling code here:
@@ -188,7 +195,7 @@ public class jPanelPemesanan extends javax.swing.JPanel {
     private void onComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_onComponentShown
         try {
             // TODO add your handling code here:
-            Ruang [] ruangs = getMainmenu().getDbc().getAllRuang();
+            Ruang [] ruangs = getMainMenu().getDbc().getAllRuang();
             DefaultComboBoxModel model = new DefaultComboBoxModel(ruangs);
             jComboBoxRuang.setModel(model);
         } catch (SQLException ex) {
@@ -227,7 +234,7 @@ public class jPanelPemesanan extends javax.swing.JPanel {
         //refresh
         
         try {
-            Pemesanan allpemesanan []= this.getMainmenu().getDbc().getPemesanan(idruang, tanggalmulai, tanggalselesai);
+            Pemesanan allpemesanan []= this.getMainMenu().getDbc().getPemesanan(idruang, tanggalmulai, tanggalselesai);
             DefaultTableModel model = new DefaultTableModel();
             model.addColumn("id");
             model.addColumn("Nama Kegiatan");
@@ -243,20 +250,19 @@ public class jPanelPemesanan extends javax.swing.JPanel {
             {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    JOptionPane.showMessageDialog(null, "not implemented");
-//                    JTable table = (JTable)e.getSource();
-//                    int modelRow = Integer.valueOf( e.getActionCommand() );
-//                    String kodekuliah = (String) table.getModel().getValueAt(modelRow, 0);
-//                    int confirm = JOptionPane.showConfirmDialog(null, "Yakin menghapus kuliah " + kodekuliah + " ?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
-//                    if (confirm==JOptionPane.YES_OPTION){
-//                        try {
-//                            getMainMenu().getDbc().deleteKuliahByKode(kodekuliah);
-//                        } catch (SQLException ex) {
-//                            JOptionPane.showMessageDialog(null, "error: " + ex);
-//                            Logger.getLogger(jPanelData.class.getName()).log(Level.SEVERE, null, ex);
-//                        }
-//                    }
-//                    showDataKuliah();
+                    JTable table = (JTable)e.getSource();
+                    int modelRow = Integer.valueOf( e.getActionCommand() );
+                    int id = (int) table.getModel().getValueAt(modelRow, 0);
+                    int confirm = JOptionPane.showConfirmDialog(null, "Yakin menghapus pemesanan ini?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+                    if (confirm==JOptionPane.YES_OPTION){
+                        try {
+                            getMainMenu().getDbc().deletePemesananById(id);
+                        } catch (SQLException ex) {
+                            JOptionPane.showMessageDialog(null, "error: " + ex);
+                            Logger.getLogger(jPanelData.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                    refresh();
                 }
             };
             //aksi ubah
@@ -311,7 +317,7 @@ public class jPanelPemesanan extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonTambah;
     private javax.swing.JComboBox jComboBoxRuang;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -324,19 +330,19 @@ public class jPanelPemesanan extends javax.swing.JPanel {
     private javax.swing.JTextField jTextFieldTanggalSelesai;
     // End of variables declaration//GEN-END:variables
 
-    private MainMenu mainmenu;
+    private MainMenu mainMenu;
 
     /**
-     * @return the mainmenu
+     * @return the mainMenu
      */
-    public MainMenu getMainmenu() {
-        return mainmenu;
+    public MainMenu getMainMenu() {
+        return mainMenu;
     }
 
     /**
-     * @param mainmenu the mainmenu to set
+     * @param mainmenu the mainMenu to set
      */
-    public void setMainmenu(MainMenu mainmenu) {
-        this.mainmenu = mainmenu;
+    public void setMainMenu(MainMenu mainmenu) {
+        this.mainMenu = mainmenu;
     }
 }
