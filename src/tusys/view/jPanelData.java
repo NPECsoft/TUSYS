@@ -146,20 +146,20 @@ public class jPanelData extends javax.swing.JPanel {
             {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    JOptionPane.showMessageDialog(null, "operasi belum didukung");
-                    /*JTable table = (JTable)e.getSource();
+                    JTable table = (JTable)e.getSource();
                     int modelRow = Integer.valueOf( e.getActionCommand() );
                     int id = (int) table.getModel().getValueAt(modelRow, 0);
-                    int confirm = JOptionPane.showConfirmDialog(null, "Yakin menghapus kuliah " + kodekuliah + " ?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+                    String namaruang = (String) table.getModel().getValueAt(modelRow,1);
+                    int confirm = JOptionPane.showConfirmDialog(null, "Yakin menghapus ruang " + namaruang + " ?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
                     if (confirm==JOptionPane.YES_OPTION){
                         try {
-                            getMainMenu().getDbc().deleteKuliahByKode(kodekuliah);
+                            getMainMenu().getDbc().deleteRuangById(id);
                         } catch (SQLException ex) {
                             JOptionPane.showMessageDialog(null, "error: " + ex);
                             Logger.getLogger(jPanelData.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     }
-                    showDataKuliah();*/
+                    showDataRuang();
                 }
             };
             //aksi ubah
@@ -196,10 +196,10 @@ public class jPanelData extends javax.swing.JPanel {
             }
             jTabelKuliahdanRuang.setModel(model);
             
-            ButtonColumn buttonColumnDelete = new ButtonColumn(jTabelKuliahdanRuang, delete, 5);
+            ButtonColumn buttonColumnDelete = new ButtonColumn(jTabelKuliahdanRuang, delete, 6);
             buttonColumnDelete.setMnemonic(KeyEvent.VK_D);
 
-            ButtonColumn buttonColumnEdit = new ButtonColumn(jTabelKuliahdanRuang, edit, 6);
+            ButtonColumn buttonColumnEdit = new ButtonColumn(jTabelKuliahdanRuang, edit, 5);
             buttonColumnEdit.setMnemonic(KeyEvent.VK_D);
             
             jTabelKuliahdanRuang.removeColumn(jTabelKuliahdanRuang.getColumnModel().getColumn(0));
