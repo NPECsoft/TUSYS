@@ -23,10 +23,10 @@ public class TUSYS {
         MainMenu mm = new MainMenu();
         DatabaseLoginJDialog dbLoginDialog = new DatabaseLoginJDialog(mm, true);
         dbLoginDialog.setVisible(true);
-        mm.setVisible(true);
         dbc = new dbconn(dbLoginDialog.getDBUsername(), dbLoginDialog.getDBPassword());
         dbc.useDB();
         mm.setDbc(dbc);
+        mm.setVisible(true);
     }
 
     public TUSYS() throws SQLException, ClassNotFoundException {
