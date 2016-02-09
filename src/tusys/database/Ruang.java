@@ -98,4 +98,9 @@ public class Ruang {
     public void setFasilitas(String fasilitas) {
         this.fasilitas = fasilitas;
     }
+    
+    //untuk jPanelPemesanan
+    public String toString(){
+        return nama_ruang;
+    }
 }
