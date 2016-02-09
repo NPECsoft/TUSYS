@@ -339,4 +339,53 @@ public class dbconn {
 
         return retv.toArray(new Pemesanan[retv.size()]);        
     }
+    
+    public Pemesanan[] getPemesananBeririsan(Pemesanan pi) throws SQLException{
+            String sql;
+        
+        sql = "SELECT * FROM pemesanan_ruangan WHERE "
+                + "id_ruang = ? AND ("
+                + "(start_time <= ? AND finish_time >= ?) OR "
+                + "(finish_time >= ? AND finish_time <= ?)"
+                + ")";
+        
+        
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setInt(1, pi.getId_ruang());
+        ps.setTime(2, pi.getStart_time());
+        ps.setTime(3, pi.getStart_time());
+        ps.setTime(4, pi.getFinish_time());
+        ps.setTime(5, pi.getFinish_time());
+        
+        ResultSet rs = ps.executeQuery();
+        
+        ArrayList<Pemesanan> retv = new ArrayList<>();
+        while (rs.next()){
+            Pemesanan p = new Pemesanan();
+            p.setId(rs.getInt("id"));
+            p.setNama_kegiatan(rs.getString("nama_kegiatan"));
+            p.setJenis_kegiatan(rs.getString("jenis_kegiatan"));
+            p.setStart_time(rs.getTime("start_time"));
+            p.setFinish_time(rs.getTime("finish_time"));
+            p.setTanggal(rs.getDate("tanggal"));
+            p.setId_ruang(rs.getInt("id_ruang"));
+            if (p.getId()!=pi.getId()) //selain dirinya
+                retv.add(p);
+        }
+
+        return retv.toArray(new Pemesanan[retv.size()]);        
+    
+    }
+    
+    public void deletePemesananById(int id) throws SQLException{
+        String sql;
+        stmt = conn.createStatement();
+        sql = "DELETE FROM pemesanan_ruangan WHERE id=?";
+        
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setInt(1,id);
+        
+        ps.executeUpdate();
+        ps.close();
+    }
 }
