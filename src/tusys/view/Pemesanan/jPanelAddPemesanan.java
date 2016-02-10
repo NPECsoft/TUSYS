@@ -9,6 +9,9 @@ import java.sql.Date;
 import tusys.view.Data.*;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
@@ -367,7 +370,13 @@ public class jPanelAddPemesanan extends javax.swing.JPanel {
 
                 System.out.println("check " + getTargetdbconn());
             }else{
-                JOptionPane.showMessageDialog(null,"belum diimplementasi");
+                //pemesanan rutin
+                Pemesanan [] prutin = createPemesananRutindanCek(p, end_date);
+                if (prutin!=null){
+                    for (Pemesanan satupemesanan : prutin){
+                        getTargetdbconn().addPemesanan(satupemesanan);
+                    }
+                }
             }
         } catch (/*SQL*/Exception ex) {
             JOptionPane.showMessageDialog(null, "error " + ex);
@@ -377,6 +386,35 @@ public class jPanelAddPemesanan extends javax.swing.JPanel {
         getCloseTarget().setVisible(false);
     }//GEN-LAST:event_jButtonTambahActionPerformed
 
+    Pemesanan [] createPemesananRutindanCek(Pemesanan p, Date hinggatanggal) throws SQLException{
+        ArrayList<Pemesanan> pemesananTerbangkitkan = new ArrayList<>();
+        while (!p.getTanggal().after(hinggatanggal)){
+                Pemesanan [] pemesananberirisan = getTargetdbconn().getPemesananBeririsan(p);
+                if (pemesananberirisan.length>0){
+                    String listp = "";
+                    for (Pemesanan pb : pemesananberirisan){
+                        listp+=pb.getNama_kegiatan()+" - " +
+                                pb.getJenis_kegiatan() + " - " +
+                                pb.getTanggal() + " - " + 
+                                "mulai" + pb.getStart_time() + " - " +
+                                "selesai" + pb.getFinish_time() + "\n";
+                    }
+                    JOptionPane.showMessageDialog(null, "Jadwal bentrok dengan : \n" + listp);
+                    return null;
+                }
+                pemesananTerbangkitkan.add(p);
+                
+                //iterasi
+                p=new Pemesanan(p);
+                Calendar c = Calendar.getInstance();
+                c.setTime(p.getTanggal());
+                c.add(Calendar.DATE, 7);
+                p.setTanggal(new Date(c.getTimeInMillis()));
+
+        }
+        return pemesananTerbangkitkan.toArray(new Pemesanan[pemesananTerbangkitkan.size()]);
+    }
+    
     private void jTextFieldWaktuMulaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldWaktuMulaiActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldWaktuMulaiActionPerformed

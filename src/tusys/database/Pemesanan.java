@@ -21,6 +21,17 @@ public class Pemesanan {
     private Date tanggal;
     private int id_ruang;
 
+    public Pemesanan(){}
+    public Pemesanan(Pemesanan p){
+        this.id=p.id;
+        this.nama_kegiatan=p.nama_kegiatan;
+        this.jenis_kegiatan=p.jenis_kegiatan;
+        this.start_time=(Time) p.start_time.clone();
+        this.finish_time=(Time) p.finish_time.clone();
+        this.tanggal=(Date) p.tanggal.clone();
+        this.id_ruang=p.id_ruang;
+    }
+    
     /**
      * @return the id
      */
