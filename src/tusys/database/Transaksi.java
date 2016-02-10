@@ -30,6 +30,10 @@ public class Transaksi {
         this.tanggal = (Date) t.tanggal.clone();
         this.id_ruang = t.id_ruang;
     }
+
+    Transaksi() {
+        
+    }
     
     /**
      * @return the id

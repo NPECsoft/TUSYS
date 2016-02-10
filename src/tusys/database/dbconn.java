@@ -111,9 +111,9 @@ public class dbconn {
         qtab6 = "CREATE TABLE `kuliah_pengguna` ("
                 + "`id` INT(8) PRIMARY KEY AUTO_INCREMENT, "
                 + "`kode_kuliah_kuliah` VARCHAR(6) NOT NULL, "
-                + "`id_pemesanan_ruangan` INT(8) NOT NULL, "
+                + "`id_penggunaan_ruangan` INT(8) NOT NULL, "
                 + "FOREIGN KEY (`kode_kuliah_kuliah`) REFERENCES `kuliah`(`kode_kuliah`), "
-                + "FOREIGN KEY (`id_pemesanan_ruangan`) REFERENCES `pemesanan_ruangan`(`id`)"
+                + "FOREIGN KEY (`id_penggunaan_ruangan`) REFERENCES `penggunaan_ruangan`(`id`)"
                 + ");";
         
         // Execute query
@@ -429,6 +429,87 @@ public class dbconn {
         ps.close();
     }
     
+    public Transaksi[] getTransaksi(int id_ruang, Date tanggal_mulai, Date tanggal_selesai) throws SQLException{
+        String sql;
+        
+        sql = "SELECT * FROM penggunaan_ruangan WHERE id_ruang=? AND tanggal <= ? AND tanggal >= ?";
+        
+        
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setInt(1, id_ruang);
+        ps.setDate(2, tanggal_selesai);
+        ps.setDate(3, tanggal_mulai);
+        
+        ResultSet rs = ps.executeQuery();
+        
+        ArrayList<Transaksi> retv = new ArrayList<>();
+        while (rs.next()){
+            Transaksi t = new Transaksi();
+            t.setId(rs.getInt("id"));
+            t.setNama_kegiatan(rs.getString("nama_kegiatan"));
+            t.setJenis_kegiatan(rs.getString("jenis_kegiatan"));
+            t.setStart_time(rs.getTime("start_time"));
+            t.setFinish_time(rs.getTime("finish_time"));
+            t.setTanggal(rs.getDate("tanggal"));
+            t.setId_ruang(rs.getInt("id_ruang"));
+            retv.add(t);
+        }
+
+        return retv.toArray(new Transaksi[retv.size()]);        
+    }
+    
+    public Transaksi[] getTransaksiBeririsan(Transaksi ti) throws SQLException{
+            String sql;
+        
+        sql = "SELECT * FROM penggunaan_ruangan WHERE "
+                + "id_ruang = ? AND ("
+                + "(start_time <= ? AND finish_time >= ?) OR "
+                + "(finish_time >= ? AND start_time <= ?) "
+                + ") AND tanggal = ?";
+        
+        
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setInt(1, ti.getId_ruang());
+        ps.setTime(2, ti.getStart_time());
+        ps.setTime(3, ti.getStart_time());
+        ps.setTime(4, ti.getFinish_time());
+        ps.setTime(5, ti.getFinish_time());
+        ps.setDate(6, ti.getTanggal());
+        
+        ResultSet rs = ps.executeQuery();
+        
+        ArrayList<Transaksi> retv = new ArrayList<>();
+        while (rs.next()){
+            Transaksi t = new Transaksi();
+            t.setId(rs.getInt("id"));
+            t.setNama_kegiatan(rs.getString("nama_kegiatan"));
+            t.setJenis_kegiatan(rs.getString("jenis_kegiatan"));
+            t.setStart_time(rs.getTime("start_time"));
+            t.setFinish_time(rs.getTime("finish_time"));
+            t.setTanggal(rs.getDate("tanggal"));
+            t.setId_ruang(rs.getInt("id_ruang"));
+            if (ti.getId()==null)//selain dirinya
+                retv.add(t);
+            else if (t.getId()!=ti.getId()) //(cont)selain dirinya
+                retv.add(t);
+        }
+
+        return retv.toArray(new Transaksi[retv.size()]);        
+    
+    }
+    
+    public void deleteTransaksiById(int id) throws SQLException{
+        String sql;
+        stmt = conn.createStatement();
+        sql = "DELETE FROM penggunaan_ruangan WHERE id=?";
+        
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setInt(1,id);
+        
+        ps.executeUpdate();
+        ps.close();
+    }
+    
     public int addTransaksi(Transaksi t) throws SQLException {
         String sql;
         sql = "INSERT INTO penggunaan_ruangan (nama_kegiatan, jenis_kegiatan, start_time, finish_time, tanggal, id_ruang) "
@@ -450,6 +531,19 @@ public class dbconn {
         ps.close();
         rs.close();
         return retval;
+    }
+    
+    public void addKuliahTransaksi(String kode_kuliah_kuliah, int id_pengguna_ruangan) throws SQLException{
+        String sql;
+        sql = "INSERT INTO kuliah_pemesan (kode_kuliah_kuliah, id_pengguna_ruangan) "
+                + "VALUES (?,?)";
+        
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setString(1, kode_kuliah_kuliah);
+        ps.setInt(2, id_pengguna_ruangan);
+        
+        ps.executeUpdate();
+        ps.close();
     }
         
         
