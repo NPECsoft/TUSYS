@@ -5,13 +5,16 @@
  */
 package tusys.view;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartFrame;
+import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
@@ -25,8 +28,8 @@ import tusys.database.*;
 public class jPanelStatistik extends javax.swing.JPanel {
     private Statistic stat = new Statistic();
     private MainMenu mainMenu;
-    private Date tanggal_mulai;
-    private Date tanggal_selesai;
+    private java.sql.Date tanggal_mulai;
+    private java.sql.Date tanggal_selesai;
     private String jenis_kegiatan;
 
     public MainMenu getMainMenu() {
@@ -171,12 +174,20 @@ public class jPanelStatistik extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         jenis_kegiatan = jComboBox1.getSelectedItem().toString();
-        tanggal_mulai = Date.valueOf(jTextField1.getText());
-        tanggal_selesai = Date.valueOf(jTextField2.getText());
         
-        //ini masih hasilnya null pointer :(
+        System.out.println(jenis_kegiatan);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        
         try {
-            stat = mainMenu.getDbc().getStatistic(jenis_kegiatan, tanggal_mulai, tanggal_selesai);
+            tanggal_mulai = new java.sql.Date(sdf.parse(jTextField1.getText()).getTime());
+            tanggal_selesai = new java.sql.Date(sdf.parse(jTextField2.getText()).getTime());
+        } catch (ParseException ex) {
+            Logger.getLogger(jPanelStatistik.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        try {
+            stat = mainMenu.getDbc().getStatistic(jenis_kegiatan, (tanggal_mulai), (tanggal_selesai));
         } catch (SQLException ex) {
             Logger.getLogger(jPanelStatistik.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -190,16 +201,17 @@ public class jPanelStatistik extends javax.swing.JPanel {
         CategoryPlot p = chart.getCategoryPlot();
         p.setRangeGridlinePaint(Color.BLACK);
         
+        /*
         ChartFrame frame = new ChartFrame("Statistik",chart);
         frame.setVisible(true);
         frame.setSize(450,350);
-        
-        /* //masih ga keluar gambarnya
+        */
+         //masih ga keluar gambarnya
         ChartPanel cp = new ChartPanel(chart);            
         jPanel1.removeAll();
         jPanel1.add(cp,BorderLayout.CENTER);
         jPanel1.revalidate();
-                */
+                
         
     }//GEN-LAST:event_jButton1ActionPerformed
 

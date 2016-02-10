@@ -3,10 +3,34 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/home/erickchandra/NetBeansProjects/TUSYS/src/tusys/TUSYS.java</file>
-            <file>file:/home/erickchandra/NetBeansProjects/TUSYS/src/tusys/view/MainMenu.java</file>
-            <file>file:/home/erickchandra/NetBeansProjects/TUSYS/src/tusys/view/jPanelKetersediaanPemesanan.java</file>
-            <file>file:/home/erickchandra/NetBeansProjects/TUSYS/src/tusys/view/Data/jPanelData.java</file>
+            <file>file:/home/erickchandra/NetBeansProjects/TUSYS/src/tusys/database/DatabaseLoginJDialog.java</file>
+            <file>file:/home/erickchandra/NetBeansProjects/TUSYS/src/tusys/database/MainMenu.java</file>
+            <file>file:/home/erickchandra/NetBeansProjects/TUSYS/src/tusys/database/dbconn.java</file>
+            <file>file:/home/erickchandra/NetBeansProjects/TUSYS/src/tusys/view/FirstPage.java</file>
+            <file>file:/home/erickchandra/NetBeansProjects/TUSYS/src/tusys/database/AddDataKuliah.java</file>
+            <file>file:/home/erickchandra/NetBeansProjects/TUSYS/src/tusys/view/MainView.java</file>
+            <file>file:/home/erickchandra/NetBeansProjects/TUSYS/src/tusys/database/AddTransaksi.java</file>
+            <file>file:/home/erickchandra/NetBeansProjects/TUSYS/src/tusys/database/AddDataRuangan.java</file>
+=======
+            <file>file:/home/nim_13512501/Documents/PPL/TUSYS/src/tusys/database/Kuliah.java</file>
+            <file>file:/home/nim_13512501/Documents/PPL/TUSYS/src/tusys/database/AddDataRuangan.java</file>
+            <file>file:/home/nim_13512501/Documents/PPL/TUSYS/src/tusys/database/DatabaseLoginJDialog.java</file>
+            <file>file:/home/nim_13512501/Documents/PPL/TUSYS/src/tusys/view/jPanelData.java</file>
+            <file>file:/home/nim_13512501/Documents/PPL/TUSYS/src/tusys/view/MainMenu.java</file>
+            <file>file:/home/nim_13512501/Documents/PPL/TUSYS/src/tusys/database/Ruang.java</file>
+            <file>file:/home/nim_13512501/Documents/PPL/TUSYS/nbproject/private/config.properties</file>
+            <file>file:/home/nim_13512501/Documents/PPL/TUSYS/src/tusys/view/FirstPage.java</file>
+            <file>file:/home/nim_13512501/Documents/PPL/TUSYS/src/tusys/TUSYS.java</file>
+            <file>file:/home/nim_13512501/Documents/PPL/TUSYS/src/tusys/view/jPanelEditDataKuliah.java</file>
+            <file>file:/home/nim_13512501/Documents/PPL/TUSYS/src/tusys/view/jPanelAddDataKuliah.java</file>
+            <file>file:/home/nim_13512501/Documents/PPL/TUSYS/nbproject/private/private.properties</file>
+            <file>file:/home/nim_13512501/Documents/PPL/TUSYS/src/tusys/database/dbconn.java</file>
+            <file>file:/home/nim_13512501/Documents/PPL/TUSYS/src/tusys/view/MainView.java</file>
+            <file>file:/home/nim_13512501/Documents/PPL/TUSYS/src/tusys/view/ButtonColumn.java</file>
+            <file>file:/home/nim_13512501/Documents/PPL/TUSYS/src/tusys/view/jPanelAddDataRuang.java</file>
+>>>>>>> e4e4916acfc81be73702e19b6b4807d0ece42a0f
         </group>
     </open-files>
 </project-private>
