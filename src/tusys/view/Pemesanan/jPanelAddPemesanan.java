@@ -98,7 +98,7 @@ public class jPanelAddPemesanan extends javax.swing.JPanel {
             }
         });
 
-        jComboBoxJenisKegiatan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Kuliah/Praktikum", "Non kurikuler", "Lain-lain" }));
+        jComboBoxJenisKegiatan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Kuliah", "Seminar", "Himpunan", "Unit" }));
         jComboBoxJenisKegiatan.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 jComboBoxJenisKegiatanComponentShown(evt);
@@ -458,7 +458,7 @@ public class jPanelAddPemesanan extends javax.swing.JPanel {
     }//GEN-LAST:event_jComboBoxFrekuensiActionPerformed
 
     private boolean jenisKuliah(){
-        return ((String)jComboBoxJenisKegiatan.getSelectedItem()).equals("Kuliah/Praktikum");
+        return ((String)jComboBoxJenisKegiatan.getSelectedItem()).equals("Kuliah");
     }
     
     private void refreshKuliah(){
@@ -499,7 +499,7 @@ public class jPanelAddPemesanan extends javax.swing.JPanel {
 
     private JDialog closeTarget;
     private dbconn targetdbconn;
-
+    
     /**
      * @return the closeTarget
      */
@@ -527,4 +527,6 @@ public class jPanelAddPemesanan extends javax.swing.JPanel {
     public void setTargetdbconn(dbconn targetdbconn) {
         this.targetdbconn = targetdbconn;
     }
+    
+    
 }

@@ -177,10 +177,11 @@
     <Component class="javax.swing.JComboBox" name="jComboBoxJenisKegiatan">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="3">
-            <StringItem index="0" value="Kuliah/Praktikum"/>
-            <StringItem index="1" value="Non kurikuler"/>
-            <StringItem index="2" value="Lain-lain"/>
+          <StringArray count="4">
+            <StringItem index="0" value="Kuliah"/>
+            <StringItem index="1" value="Seminar"/>
+            <StringItem index="2" value="Himpunan"/>
+            <StringItem index="3" value="Unit"/>
           </StringArray>
         </Property>
       </Properties>
