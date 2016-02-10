@@ -428,6 +428,29 @@ public class dbconn {
         ps.executeUpdate();
         ps.close();
     }
+    
+    public int addTransaksi(Transaksi t) throws SQLException {
+        String sql;
+        sql = "INSERT INTO penggunaan_ruangan (nama_kegiatan, jenis_kegiatan, start_time, finish_time, tanggal, id_ruang) "
+                + "VALUES (?,?,?,?,?,?)";
+        
+        PreparedStatement ps = conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+        ps.setString(1, t.getNama_kegiatan());
+        ps.setString(2, t.getJenis_kegiatan());
+        ps.setTime(3, t.getStart_time());
+        ps.setTime(4, t.getFinish_time());
+        ps.setDate(5, t.getTanggal());
+        ps.setInt(6, t.getId_ruang());
+        
+        ps.executeUpdate();
+        
+        ResultSet rs = ps.getGeneratedKeys();
+        rs.next();
+        int retval = rs.getInt(1);
+        ps.close();
+        rs.close();
+        return retval;
+    }
         
         
     public Statistic getStatistic(String jenis_kegiatan, Date tanggal_mulai, Date tanggal_selesai) throws SQLException{
