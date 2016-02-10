@@ -16,27 +16,148 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
-              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="61" max="32767" attributes="0"/>
+          <Group type="102" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jLabelWarningTanggal" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextFieldTanggal" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                              <Component id="jLabelWaktuMulai" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jTextFieldWaktuMulai" min="-2" pref="79" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jLabelWaktuSelesai" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jTextFieldWaktuSelesai" min="-2" pref="79" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                              <Component id="jLabelWarningWaktuMulai" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="jLabelWarningWaktuSelesai" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
-              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="219" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="jTextFieldTanggal" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabelWarningTanggal" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelWarningWaktuMulai" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabelWaktuMulai" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextFieldWaktuMulai" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelWaktuSelesai" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextFieldWaktuSelesai" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jLabelWarningWaktuSelesai" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" pref="275" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTable" name="jTableDaftarRuang">
+          <Properties>
+            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+              <Table columnCount="4" rowCount="4">
+                <Column editable="true" title="Title 1" type="java.lang.Object"/>
+                <Column editable="true" title="Title 2" type="java.lang.Object"/>
+                <Column editable="true" title="Title 3" type="java.lang.Object"/>
+                <Column editable="true" title="Title 4" type="java.lang.Object"/>
+              </Table>
+            </Property>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="TODO Panel Ketersediaan Pemesanan"/>
+        <Property name="text" type="java.lang.String" value="Tanggal"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTextFieldTanggal">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldTanggalActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelWarningTanggal">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="format yyyy-mm-dd"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelWaktuMulai">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="waktu Mulai"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTextFieldWaktuMulai">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldWaktuMulaiActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelWaktuSelesai">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="waktu Selesai"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTextFieldWaktuSelesai">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldWaktuSelesaiActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelWarningWaktuMulai">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="format HH:MM"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelWarningWaktuSelesai">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="format HH:MM"/>
       </Properties>
     </Component>
   </SubComponents>

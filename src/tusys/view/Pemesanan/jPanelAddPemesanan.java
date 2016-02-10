@@ -14,6 +14,7 @@ import java.util.Calendar;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
@@ -564,6 +565,35 @@ public class jPanelAddPemesanan extends javax.swing.JPanel {
      */
     public void setTargetdbconn(dbconn targetdbconn) {
         this.targetdbconn = targetdbconn;
+    }
+    
+    public void setRuang(int id_ruang){
+        ComboBoxModel model = jComboBoxRuang.getModel();
+        
+        //cari ruang yang id-nya sama lalu pilih
+        for (int i=0;i<model.getSize();i++){
+            Ruang r = (Ruang) model.getElementAt(i);
+            if (r.getId()==id_ruang){
+                model.setSelectedItem(r);
+                return;
+            }
+        }
+    }
+    
+    public void setTanggalMulai(Date tanggal){
+        jTextFieldTanggalMulai.setText(tanggal.toString());
+    }
+    
+    public void setTanggalSelesai(Date tanggal){
+        jTextFieldTanggalSelesai.setText(tanggal.toString());
+    }
+    
+    public void setWaktuMulai(Time waktu){
+        jTextFieldWaktuMulai.setText(waktu.toString());
+    }
+    
+    public void setWaktuSelesai(Time waktu){
+        jTextFieldWaktuSelesai.setText(waktu.toString());
     }
     
     

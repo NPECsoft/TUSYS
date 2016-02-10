@@ -33,6 +33,7 @@ public class MainMenu extends javax.swing.JFrame {
         
         jPanelData1.setMainMenu(this);
         jPanelPemesanan1.setMainMenu(this);
+        jPanelKetersediaanPemesanan1.setMainMenu(this);
         jPanelStatistik1.setMainMenu(this);
         //Data Button
 

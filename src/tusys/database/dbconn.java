@@ -416,6 +416,36 @@ public class dbconn {
         return retval;
     }
     
+    public Ruang[] getRuangAvaliableDipesan(Date tanggal, Time waktu_mulai, Time waktu_selesai) throws SQLException{
+        String sql;
+        sql = "SELECT * FROM ruang "
+                + "WHERE id NOT IN "
+                + "(SELECT id_ruang as id FROM pemesanan_ruangan WHERE "
+                + "("
+                + "(start_time <= ? AND finish_time >= ?) OR "
+                + "(finish_time >= ? AND start_time <= ?) "
+                + ") AND tanggal = ?)";
+        
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setTime(1, waktu_mulai);
+        ps.setTime(2, waktu_mulai);
+        ps.setTime(3, waktu_selesai);
+        ps.setTime(4, waktu_selesai);
+        ps.setDate(5, tanggal);
+        
+        
+        ResultSet rs = ps.executeQuery();
+        
+        ArrayList<Ruang> retv = new ArrayList<>();
+        while (rs.next()){
+            Ruang r = new Ruang(rs.getInt("id"),rs.getString("nama_ruang"),rs.getString("jenis_ruang"),rs.getInt("kapasitas_ruang"),rs.getString("fasilitas"));
+            retv.add(r);
+        }
+
+        return retv.toArray(new Ruang[retv.size()]);
+        
+    }
+    
     public void addKuliahPemesan(String kode_kuliah_kuliah, int id_pemesanan_ruangan) throws SQLException{
         String sql;
         sql = "INSERT INTO kuliah_pemesan (kode_kuliah_kuliah, id_pemesanan_ruangan) "
