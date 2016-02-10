@@ -346,8 +346,8 @@ public class dbconn {
         sql = "SELECT * FROM pemesanan_ruangan WHERE "
                 + "id_ruang = ? AND ("
                 + "(start_time <= ? AND finish_time >= ?) OR "
-                + "(finish_time >= ? AND finish_time <= ?)"
-                + ")";
+                + "(finish_time >= ? AND start_time <= ?) "
+                + ") AND tanggal = ?";
         
         
         PreparedStatement ps = conn.prepareStatement(sql);
@@ -356,6 +356,7 @@ public class dbconn {
         ps.setTime(3, pi.getStart_time());
         ps.setTime(4, pi.getFinish_time());
         ps.setTime(5, pi.getFinish_time());
+        ps.setDate(6, pi.getTanggal());
         
         ResultSet rs = ps.executeQuery();
         
