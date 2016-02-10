@@ -93,7 +93,7 @@ public class TUSYS {
         FileOutputStream fos;
         try {
             fos = new FileOutputStream (propertiesfile);
-            TUSYSproperties.store(fos, "");
+            TUSYSproperties.store(fos, "Ini berkas konfigurasi aplikasi TUSYS");
         } catch (FileNotFoundException ex) {
             JOptionPane.showMessageDialog(null, ex);
             Logger.getLogger(TUSYS.class.getName()).log(Level.SEVERE, null, ex);
