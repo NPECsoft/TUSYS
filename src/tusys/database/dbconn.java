@@ -438,19 +438,22 @@ public class dbconn {
         
         for (int i = 0; i < ruangan.length; i++) {
             sql = "SELECT COUNT(*) AS jumlah_penggunaan FROM penggunaan_ruangan WHERE jenis_kegiatan = ? AND tanggal <= ? AND tanggal >= ? AND id_ruang = ?";
-
+            
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, jenis_kegiatan);
-            ps.setDate(2, tanggal_selesai);
-            ps.setDate(3, tanggal_mulai);
+            ps.setDate(2, tanggal_mulai);
+            ps.setDate(3, tanggal_selesai);
             ps.setInt(4, ruangan[i].getId());
-
-            ResultSet rs = ps.executeQuery();
             
+            ResultSet rs = ps.executeQuery();
+            System.out.println(ps);
             stat.getRuangan().add(ruangan[i].getNama_ruang());
             System.out.println(ruangan[i].getNama_ruang());
-            stat.getFrekuensi().add(rs.getInt("jumlah_penggunaan"));
-            System.out.println(rs.getInt("jumlah_penggunaan"));
+            while (rs.next()) {
+                System.out.println(rs.getInt("jumlah_penggunaan"));
+                stat.getFrekuensi().add(rs.getInt("jumlah_penggunaan"));
+
+            }
             stat.setJenisKegiatan(jenis_kegiatan);
             System.out.println(jenis_kegiatan);
         }
