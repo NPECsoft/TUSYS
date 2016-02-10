@@ -63,7 +63,7 @@ public class MainMenu extends javax.swing.JFrame {
         jPanelData1 = new tusys.view.Data.jPanelData();
         jPanelPemesanan1 = new tusys.view.Pemesanan.jPanelPemesanan();
         jPanelKetersediaanPemesanan1 = new tusys.view.jPanelKetersediaanPemesanan();
-        jPanelTransaksi1 = new tusys.view.jPanelTransaksi();
+        jPanelTransaksi1 = new tusys.view.Transaksi.jPanelTransaksi();
         jPanelKetersediaanTransaksi1 = new tusys.view.jPanelKetersediaanTransaksi();
         jPanelStatistik1 = new tusys.view.jPanelStatistik();
 
@@ -153,7 +153,7 @@ public class MainMenu extends javax.swing.JFrame {
     private tusys.view.jPanelKetersediaanTransaksi jPanelKetersediaanTransaksi1;
     private tusys.view.Pemesanan.jPanelPemesanan jPanelPemesanan1;
     private tusys.view.jPanelStatistik jPanelStatistik1;
-    private tusys.view.jPanelTransaksi jPanelTransaksi1;
+    private tusys.view.Transaksi.jPanelTransaksi jPanelTransaksi1;
     private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables
 
