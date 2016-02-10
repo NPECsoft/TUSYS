@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import tusys.database.dbconn;
+import tusys.view.Data.jPanelData;
 import tusys.view.FirstPage;
 
 /**
@@ -172,4 +173,14 @@ public class MainMenu extends javax.swing.JFrame {
     public void setDbc(dbconn dbc) {
         this.dbc = dbc;
     }
+
+    public jPanelData getjPanelData1() {
+        return jPanelData1;
+    }
+
+    public void setjPanelData1(jPanelData jPanelData1) {
+        this.jPanelData1 = jPanelData1;
+    }
+    
+    
 }
