@@ -82,7 +82,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="tusys.view.jPanelTransaksi" name="jPanelTransaksi1">
+        <Component class="tusys.view.Transaksi.jPanelTransaksi" name="jPanelTransaksi1">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="Transaksi">
