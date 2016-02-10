@@ -345,7 +345,7 @@ public class jPanelAddPemesanan extends javax.swing.JPanel {
             p.setStart_time(start_time);
             p.setFinish_time(finish_time);
             p.setTanggal(start_date);
-            p.setJenis_kegiatan(nama_kegiatan);
+            p.setJenis_kegiatan(jenis_kegiatan);
             p.setId_ruang(id_ruang);
             
             

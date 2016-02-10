@@ -374,6 +374,7 @@ public class dbconn {
                 retv.add(p);
             else if (p.getId()!=pi.getId()) //(cont)selain dirinya
                 retv.add(p);
+            System.out.println(""+p.getId()+","+pi.getId());
         }
 
         return retv.toArray(new Pemesanan[retv.size()]);        
@@ -414,6 +415,24 @@ public class dbconn {
         ps.close();
         rs.close();
         return retval;
+    }
+    
+    public void editPemesanan(Pemesanan p) throws SQLException{
+        String sql;
+        sql = "UPDATE pemesanan_ruangan SET nama_kegiatan = ?, jenis_kegiatan = ?, start_time = ?,  finish_time = ?, tanggal = ?, id_ruang = ? WHERE id = ?";
+        
+        PreparedStatement ps = conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+        ps.setString(1, p.getNama_kegiatan());
+        ps.setString(2, p.getJenis_kegiatan());
+        ps.setTime(3, p.getStart_time());
+        ps.setTime(4, p.getFinish_time());
+        ps.setDate(5, p.getTanggal());
+        ps.setInt(6, p.getId_ruang());
+        ps.setInt(7,p.getId());
+        
+        ps.executeUpdate();
+        ps.close();
+        
     }
     
     public Ruang[] getRuangAvaliableDipesan(Date tanggal, Time waktu_mulai, Time waktu_selesai) throws SQLException{
@@ -457,6 +476,35 @@ public class dbconn {
         
         ps.executeUpdate();
         ps.close();
+    }
+    
+    public void deleteKuliahPemesan(int id_pemesanan_ruangan)throws SQLException{
+        String sql;
+        sql = "DELETE FROM kuliah_pemesan WHERE id_pemesanan_ruangan=?";
+        
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setInt(1, id_pemesanan_ruangan);
+        
+        ps.executeUpdate();
+        ps.close();
+        
+    }
+    
+    public Kuliah getKuliahPemesan(int pid) throws SQLException{
+        String sql;
+        sql = "SELECT * FROM kuliah_pemesan JOIN kuliah ON kode_kuliah = kode_kuliah_kuliah WHERE id_pemesanan_ruangan = ?";
+        
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setInt(1, pid);
+        
+        ResultSet rs = ps.executeQuery();
+        Kuliah retval = null;
+        if (rs.next())
+         retval = new Kuliah(rs.getString("kode_kuliah"),
+                            rs.getString("nama_kuliah"),
+                            rs.getInt("jumlah_peserta"));
+        
+        return retval;
     }
         
         

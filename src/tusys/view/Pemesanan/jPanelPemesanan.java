@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.AbstractAction;
@@ -19,6 +20,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+import tusys.database.Kuliah;
 import tusys.database.Pemesanan;
 import tusys.database.Ruang;
 import tusys.view.ButtonColumn;
@@ -270,19 +272,30 @@ public class jPanelPemesanan extends javax.swing.JPanel {
             {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    JOptionPane.showMessageDialog(null, "not implemented");
-//                    JTable table = (JTable)e.getSource();
-//                    int modelRow = Integer.valueOf( e.getActionCommand() );
-//                    
-//                    TableModel model = table.getModel();
-//                    final JDialog frame = new JDialog(jPanelData.this.getMainMenu(), "Ubah Data Kuliah", true);
-//                    frame.getContentPane().add(new jPanelEditDataKuliah(frame,getMainMenu().getDbc(),
-//                                                                          (String) model.getValueAt(modelRow, 0),
-//                                                                          (String) model.getValueAt(modelRow, 1),
-//                                                                          (int) model.getValueAt(modelRow, 2)));
-//                    frame.pack();
-//                    frame.setVisible(true);
-//                    showDataKuliah();
+                    JTable table = (JTable)e.getSource();
+                    int modelRow = Integer.valueOf( e.getActionCommand() );
+                    
+                    TableModel model = table.getModel();
+                    final JDialog frame = new JDialog(getMainMenu(), "Ubah Data Kuliah", true);
+                    jPanelEditPemesanan panelinput = new jPanelEditPemesanan(frame, getMainMenu().getDbc());
+                    panelinput.setTargetId((int) model.getValueAt(modelRow, 0));
+                    Kuliah k;
+                    try {
+                        k = getMainMenu().getDbc().getKuliahPemesan((int) model.getValueAt(modelRow, 0));
+                        if (k!=null)panelinput.setKuliah(k);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(jPanelPemesanan.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    panelinput.setNamaKegiatan((String) model.getValueAt(modelRow,1));
+                    panelinput.setJenisKegiatan((String) model.getValueAt(modelRow, 2));
+                    panelinput.setTanggalMulai((Date) model.getValueAt(modelRow, 3));
+                    panelinput.setWaktuMulai((Time) model.getValueAt(modelRow, 4));
+                    panelinput.setWaktuSelesai((Time) model.getValueAt(modelRow, 5));
+                    
+                    frame.getContentPane().add(panelinput);
+                    frame.pack();
+                    frame.setVisible(true);
+                    refresh();
                 }
             };
             for (int i=0;i<allpemesanan.length;i++){
