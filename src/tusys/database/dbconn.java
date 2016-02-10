@@ -577,4 +577,32 @@ public class dbconn {
         
         return stat;
     }
+    
+    public Statistic getAllStatistic(Date tanggal_mulai, Date tanggal_selesai) throws SQLException{
+        String sql;
+        Statistic stat = new Statistic();
+        
+        Ruang[] ruangan = getAllRuang();
+        
+        for (int i = 0; i < ruangan.length; i++) {
+            sql = "SELECT COUNT(*) AS jumlah_penggunaan FROM penggunaan_ruangan WHERE tanggal <= ? AND tanggal >= ? AND id_ruang = ?";
+            
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setDate(1, tanggal_mulai);
+            ps.setDate(2, tanggal_selesai);
+            ps.setInt(3, ruangan[i].getId());
+            
+            ResultSet rs = ps.executeQuery();
+            System.out.println(ps);
+            stat.getRuangan().add(ruangan[i].getNama_ruang());
+            System.out.println(ruangan[i].getNama_ruang());
+            while (rs.next()) {
+                System.out.println(rs.getInt("jumlah_penggunaan"));
+                stat.getFrekuensi().add(rs.getInt("jumlah_penggunaan"));
+
+            }
+        }
+        
+        return stat;
+    }
 }

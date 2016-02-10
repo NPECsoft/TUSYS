@@ -5,7 +5,6 @@
  */
 package tusys.view;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -14,10 +13,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
-import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.ValueAxis;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.plot.XYPlot;
 import org.jfree.data.category.DefaultCategoryDataset;
 import tusys.database.*;
 
@@ -99,7 +99,7 @@ public class jPanelStatistik extends javax.swing.JPanel {
         jLabel1.setText("Tanggal Mulai");
         jLabel1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Kuliah", "Seminar", "Himpunan", "Unit" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Kuliah", "Seminar", "Himpunan", "Unit", "Semua" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -152,7 +152,7 @@ public class jPanelStatistik extends javax.swing.JPanel {
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
                 .addContainerGap())
@@ -174,11 +174,20 @@ public class jPanelStatistik extends javax.swing.JPanel {
             Logger.getLogger(jPanelStatistik.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        try {
-            stat = mainMenu.getDbc().getStatistic(jenis_kegiatan, (tanggal_mulai), (tanggal_selesai));
-        } catch (SQLException ex) {
-            Logger.getLogger(jPanelStatistik.class.getName()).log(Level.SEVERE, null, ex);
+        if (jenis_kegiatan.equals("Semua")) {
+            try {
+                stat = mainMenu.getDbc().getAllStatistic(tanggal_mulai, tanggal_selesai);
+            } catch (SQLException ex) {
+                Logger.getLogger(jPanelStatistik.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            try {
+                stat = mainMenu.getDbc().getStatistic(jenis_kegiatan, (tanggal_mulai), (tanggal_selesai));
+            } catch (SQLException ex) {
+                Logger.getLogger(jPanelStatistik.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
+        
         
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         for (int i = 0; i < stat.getRuangan().size(); i++){
