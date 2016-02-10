@@ -13,7 +13,7 @@ import java.sql.Time;
  * @author nim_13512501
  */
 public class Pemesanan {
-    private int id;
+    private Integer id;
     private String nama_kegiatan;
     private String jenis_kegiatan;
     private Time start_time;
@@ -21,17 +21,28 @@ public class Pemesanan {
     private Date tanggal;
     private int id_ruang;
 
+    public Pemesanan(){}
+    public Pemesanan(Pemesanan p){
+        this.id=p.id;
+        this.nama_kegiatan=p.nama_kegiatan;
+        this.jenis_kegiatan=p.jenis_kegiatan;
+        this.start_time=(Time) p.start_time.clone();
+        this.finish_time=(Time) p.finish_time.clone();
+        this.tanggal=(Date) p.tanggal.clone();
+        this.id_ruang=p.id_ruang;
+    }
+    
     /**
      * @return the id
      */
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

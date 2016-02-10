@@ -105,7 +105,7 @@ public class dbconn {
                 + "`kode_kuliah_kuliah` VARCHAR(6) NOT NULL, "
                 + "`id_pemesanan_ruangan` INT(8) NOT NULL, "
                 + "FOREIGN KEY (`kode_kuliah_kuliah`) REFERENCES `kuliah`(`kode_kuliah`), "
-                + "FOREIGN KEY (`id_pemesanan_ruangan`) REFERENCES `pemesanan_ruangan`(`id`)"
+                + "FOREIGN KEY (`id_pemesanan_ruangan`) REFERENCES `pemesanan_ruangan`(`id`) ON DELETE CASCADE"
                 + ");";
         
         qtab6 = "CREATE TABLE `kuliah_pengguna` ("
@@ -346,8 +346,8 @@ public class dbconn {
         sql = "SELECT * FROM pemesanan_ruangan WHERE "
                 + "id_ruang = ? AND ("
                 + "(start_time <= ? AND finish_time >= ?) OR "
-                + "(finish_time >= ? AND finish_time <= ?)"
-                + ")";
+                + "(finish_time >= ? AND start_time <= ?) "
+                + ") AND tanggal = ?";
         
         
         PreparedStatement ps = conn.prepareStatement(sql);
@@ -356,6 +356,7 @@ public class dbconn {
         ps.setTime(3, pi.getStart_time());
         ps.setTime(4, pi.getFinish_time());
         ps.setTime(5, pi.getFinish_time());
+        ps.setDate(6, pi.getTanggal());
         
         ResultSet rs = ps.executeQuery();
         
@@ -369,7 +370,9 @@ public class dbconn {
             p.setFinish_time(rs.getTime("finish_time"));
             p.setTanggal(rs.getDate("tanggal"));
             p.setId_ruang(rs.getInt("id_ruang"));
-            if (p.getId()!=pi.getId()) //selain dirinya
+            if (pi.getId()==null)//selain dirinya
+                retv.add(p);
+            else if (p.getId()!=pi.getId()) //(cont)selain dirinya
                 retv.add(p);
         }
 
@@ -384,6 +387,43 @@ public class dbconn {
         
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setInt(1,id);
+        
+        ps.executeUpdate();
+        ps.close();
+    }
+    
+    //returns resulting id
+    public int addPemesanan(Pemesanan p) throws SQLException{
+        String sql;
+        sql = "INSERT INTO pemesanan_ruangan (nama_kegiatan, jenis_kegiatan, start_time, finish_time, tanggal, id_ruang) "
+                + "VALUES (?,?,?,?,?,?)";
+        
+        PreparedStatement ps = conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+        ps.setString(1, p.getNama_kegiatan());
+        ps.setString(2, p.getJenis_kegiatan());
+        ps.setTime(3, p.getStart_time());
+        ps.setTime(4, p.getFinish_time());
+        ps.setDate(5, p.getTanggal());
+        ps.setInt(6, p.getId_ruang());
+        
+        ps.executeUpdate();
+        
+        ResultSet rs = ps.getGeneratedKeys();
+        rs.next();
+        int retval = rs.getInt(1);
+        ps.close();
+        rs.close();
+        return retval;
+    }
+    
+    public void addKuliahPemesan(String kode_kuliah_kuliah, int id_pemesanan_ruangan) throws SQLException{
+        String sql;
+        sql = "INSERT INTO kuliah_pemesan (kode_kuliah_kuliah, id_pemesanan_ruangan) "
+                + "VALUES (?,?)";
+        
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setString(1, kode_kuliah_kuliah);
+        ps.setInt(2, id_pemesanan_ruangan);
         
         ps.executeUpdate();
         ps.close();
