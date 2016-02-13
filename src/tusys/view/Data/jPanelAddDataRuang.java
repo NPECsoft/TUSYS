@@ -70,6 +70,7 @@ public class jPanelAddDataRuang extends javax.swing.JPanel {
             }
         });
 
+        jLabelJudul.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabelJudul.setText("Tambah Data Ruangan");
 
         jLabel2.setText("Nama Ruangan");
@@ -88,10 +89,6 @@ public class jPanelAddDataRuang extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(115, 115, 115)
-                .addComponent(jLabelJudul)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -99,7 +96,8 @@ public class jPanelAddDataRuang extends javax.swing.JPanel {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButtonBatal, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonTambah, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButtonTambah, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(76, 76, 76))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,6 +111,10 @@ public class jPanelAddDataRuang extends javax.swing.JPanel {
                             .addComponent(jTextFieldNamaRuangan, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
                             .addComponent(jComboBoxJenisRuangan, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(95, 95, 95)
+                .addComponent(jLabelJudul)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,11 +155,19 @@ public class jPanelAddDataRuang extends javax.swing.JPanel {
     }//GEN-LAST:event_jButtonBatalActionPerformed
 
     private void jButtonTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTambahActionPerformed
-try {
+    try {
             // TODO add your handling code here:
             //validasi input
             try{
-                Integer.parseInt(jTextFieldKapasitasRuangan.getText());
+                int peserta = Integer.parseInt(jTextFieldKapasitasRuangan.getText());
+                if ((peserta > 0)&&(peserta < 200)) {
+                    //do nothing
+                    
+                } else {
+                    JOptionPane.showMessageDialog(null, "Kapasitas ruangan di luar range 1-199");
+                    jTextFieldKapasitasRuangan.setText("");
+                    return;
+                }
             }catch(NumberFormatException e){
                 JOptionPane.showMessageDialog(null, "angka kapasitas salah");
                 return;
