@@ -35,6 +35,7 @@ public class jPanelData extends javax.swing.JPanel {
         initComponents();
         buttonGroup1.add(jRadioButtonKuliah);
         buttonGroup1.add(jRadioButtonRuang);
+        jRadioButtonKuliah.setSelected(true);
     }
 
     /**
@@ -287,7 +288,8 @@ public class jPanelData extends javax.swing.JPanel {
         // TODO add your handling code here:
         if (jRadioButtonKuliah.isSelected()){
             final JDialog frame = new JDialog(jPanelData.this.getMainMenu(), "Tambah Data Kuliah", true);
-            frame.getContentPane().add(new jPanelAddDataKuliah(frame,this.getMainMenu().getDbc()));
+            jPanelAddDataKuliah panelKuliah = new jPanelAddDataKuliah(frame,this.getMainMenu().getDbc());
+            frame.getContentPane().add(panelKuliah);
             
             frame.pack();
             frame.setVisible(true);

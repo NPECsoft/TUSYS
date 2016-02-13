@@ -73,6 +73,7 @@ public class TUSYS {
         try{
             if (dbc==null){
                 DatabaseLoginJDialog dbLoginDialog = new DatabaseLoginJDialog(null, true);
+                dbLoginDialog.setLocationRelativeTo(null);
                 dbLoginDialog.setVisible(true);
                 DBURL = dbLoginDialog.getDBURL();
                 DBUsername = dbLoginDialog.getDBUsername();

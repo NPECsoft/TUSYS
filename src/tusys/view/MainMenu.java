@@ -28,7 +28,7 @@ public class MainMenu extends javax.swing.JFrame {
         initComponents();
         setTitle ("TU System");
         setSize (800,590);
-        setLocation (270,60);
+        setLocationRelativeTo(null);
         setResizable(false);
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         

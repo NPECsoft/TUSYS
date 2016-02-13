@@ -28,6 +28,7 @@ public class jPanelAddDataKuliah extends javax.swing.JPanel {
         initComponents();
         this.closeTarget=closetarget;
         this.targetdbconn=targetdbconn;
+        closeTarget.setLocation(500,250);
     }
 
     /**
