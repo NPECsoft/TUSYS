@@ -167,9 +167,14 @@ public class jPanelEditDataRuang extends javax.swing.JPanel {
     }//GEN-LAST:event_jButtonBatalActionPerformed
 
     private void jButtonTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTambahActionPerformed
-try {
+    try {
             // TODO add your handling code here:
             //validasi input
+            if (jTextFieldNamaRuangan.getText().length()<1){
+                JOptionPane.showMessageDialog(null, "Nama ruangan tidak boleh kosong");
+                return;
+            }
+            
             try{
                 int peserta = Integer.parseInt(jTextFieldKapasitasRuangan.getText());
                 if ((peserta > 0)&&(peserta < 200)) {

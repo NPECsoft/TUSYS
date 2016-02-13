@@ -158,6 +158,11 @@ public class jPanelAddDataRuang extends javax.swing.JPanel {
     try {
             // TODO add your handling code here:
             //validasi input
+            if (jTextFieldNamaRuangan.getText().length()<1){
+                JOptionPane.showMessageDialog(null, "Nama ruangan tidak boleh kosong");
+                return;
+            }
+            
             try{
                 int peserta = Integer.parseInt(jTextFieldKapasitasRuangan.getText());
                 if ((peserta > 0)&&(peserta < 200)) {
