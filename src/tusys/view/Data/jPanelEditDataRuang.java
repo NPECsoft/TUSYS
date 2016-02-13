@@ -35,6 +35,7 @@ public class jPanelEditDataRuang extends javax.swing.JPanel {
         this.closeTarget=closetarget;
         this.targetdbconn=targetdbconn;
         this.targetID=id;
+        closeTarget.setLocation(500,250);
         jLabelJudul.setText("Ubah Data Ruang "+ NamaRuang);
         jTextFieldNamaRuangan.setText(NamaRuang);
         jComboBoxJenisRuangan.setSelectedItem(JenisRuang);

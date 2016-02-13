@@ -139,10 +139,22 @@ public class jPanelAddDataKuliah extends javax.swing.JPanel {
             if (jTextFieldKodeKuliah.getText().length()>6){
                 JOptionPane.showMessageDialog(null, "Panjang kode kuliah max. 6 karakter");
                 return;
+            } else if (jTextFieldKodeKuliah.getText().length()<1){
+                JOptionPane.showMessageDialog(null, "Kode kuliah tidak boleh kosong");
+                return;
             }
+            
             try{
-                Integer.parseInt(jTextFieldJumlahPeserta.getText());
-            }catch(NumberFormatException e){
+                int peserta = Integer.parseInt(jTextFieldJumlahPeserta.getText());
+                if ((peserta > 0)&&(peserta < 200)) {
+                    //do nothing
+                    
+                } else {
+                    JOptionPane.showMessageDialog(null, "Jumlah peserta melewati range 1-199");
+                    jTextFieldJumlahPeserta.setText("");
+                    return;
+                }
+            } catch(NumberFormatException e){
                 JOptionPane.showMessageDialog(null, "angka jumlah peserta salah");
                 return;
             }
@@ -155,7 +167,15 @@ public class jPanelAddDataKuliah extends javax.swing.JPanel {
             System.out.println("check " + getTargetdbconn());
             getTargetdbconn().addKuliah(k);
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "error " + ex);
+            String err = ex.toString();
+            if (err.contains("MySQLIntegrityConstraintViolationException: Duplicate entry")) {
+                JOptionPane.showMessageDialog(null, "error duplicate kode kuliah");
+                return;
+            } else {
+                JOptionPane.showMessageDialog(null, "error " + ex);
+                Logger.getLogger(jPanelEditDataKuliah.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
             Logger.getLogger(jPanelAddDataKuliah.class.getName()).log(Level.SEVERE, null, ex);
         }
         

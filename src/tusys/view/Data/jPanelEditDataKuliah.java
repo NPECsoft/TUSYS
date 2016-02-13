@@ -31,6 +31,7 @@ public class jPanelEditDataKuliah extends javax.swing.JPanel {
         initComponents();
         this.closeTarget=closetarget;
         this.targetdbconn=targetdbconn;
+        closeTarget.setLocation(500,250);
         target_kode_kuliah = kode_kuliah;
         jLabelJudul.setText("Ubah Data Kuliah " + kode_kuliah);
         jTextFieldKodeKuliah.setText(kode_kuliah);
@@ -146,9 +147,22 @@ public class jPanelEditDataKuliah extends javax.swing.JPanel {
             if (jTextFieldKodeKuliah.getText().length()>6){
                 JOptionPane.showMessageDialog(null, "Panjang kode kuliah max. 6 karakter");
                 return;
+            } else if (jTextFieldKodeKuliah.getText().length()<1){
+                JOptionPane.showMessageDialog(null, "Kode kuliah tidak boleh kosong");
+                return;
             }
+            
             try{
-                Integer.parseInt(jTextFieldJumlahPeserta.getText());
+                int peserta = Integer.parseInt(jTextFieldJumlahPeserta.getText());
+                if ((peserta > 0)&&(peserta < 200)) {
+                    //do nothing
+                    
+                } else {
+                    JOptionPane.showMessageDialog(null, "Jumlah peserta melewati range 1-199");
+                    jTextFieldJumlahPeserta.setText("");
+                    return;
+                }
+                
             }catch(NumberFormatException e){
                 JOptionPane.showMessageDialog(null, "angka jumlah peserta salah");
                 return;
@@ -161,9 +175,18 @@ public class jPanelEditDataKuliah extends javax.swing.JPanel {
             
             System.out.println("check " + getTargetdbconn());
             getTargetdbconn().editKuliahByKode(target_kode_kuliah, k);
+            
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "error " + ex);
-            Logger.getLogger(jPanelEditDataKuliah.class.getName()).log(Level.SEVERE, null, ex);
+            String err = ex.toString();
+            if (err.contains("MySQLIntegrityConstraintViolationException: Duplicate entry")) {
+                JOptionPane.showMessageDialog(null, "error duplicate kode kuliah");
+                return;
+            } else {
+                JOptionPane.showMessageDialog(null, "error " + ex);
+                Logger.getLogger(jPanelEditDataKuliah.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            
         }
         
         getCloseTarget().setVisible(false);
