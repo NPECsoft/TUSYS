@@ -36,6 +36,8 @@ public class MainMenu extends javax.swing.JFrame {
         jPanelPemesanan1.setMainMenu(this);
         jPanelKetersediaanPemesanan1.setMainMenu(this);
         jPanelStatistik1.setMainMenu(this);
+        jPanelTransaksi1.setMainMenu(this);
+        jPanelKetersediaanTransaksi1.setMainMenu(this);
         //Data Button
 
         // Window Listeners
@@ -66,7 +68,7 @@ public class MainMenu extends javax.swing.JFrame {
         jPanelPemesanan1 = new tusys.view.Pemesanan.jPanelPemesanan();
         jPanelKetersediaanPemesanan1 = new tusys.view.Pemesanan.jPanelKetersediaanPemesanan();
         jPanelTransaksi1 = new tusys.view.Transaksi.jPanelTransaksi();
-        jPanelKetersediaanTransaksi1 = new tusys.view.jPanelKetersediaanTransaksi();
+        jPanelKetersediaanTransaksi1 = new tusys.view.Transaksi.jPanelKetersediaanTransaksi();
         jPanelStatistik1 = new tusys.view.jPanelStatistik();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -152,7 +154,7 @@ public class MainMenu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private tusys.view.Data.jPanelData jPanelData1;
     private tusys.view.Pemesanan.jPanelKetersediaanPemesanan jPanelKetersediaanPemesanan1;
-    private tusys.view.jPanelKetersediaanTransaksi jPanelKetersediaanTransaksi1;
+    private tusys.view.Transaksi.jPanelKetersediaanTransaksi jPanelKetersediaanTransaksi1;
     private tusys.view.Pemesanan.jPanelPemesanan jPanelPemesanan1;
     private tusys.view.jPanelStatistik jPanelStatistik1;
     private tusys.view.Transaksi.jPanelTransaksi jPanelTransaksi1;

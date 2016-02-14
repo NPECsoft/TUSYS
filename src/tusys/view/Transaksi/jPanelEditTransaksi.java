@@ -5,10 +5,14 @@
  */
 package tusys.view.Transaksi;
 
+import tusys.view.Pemesanan.*;
 import java.sql.Date;
 import tusys.view.Data.*;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ComboBoxModel;
@@ -16,6 +20,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import tusys.database.Kuliah;
+import tusys.database.Pemesanan;
 import tusys.database.Ruang;
 import tusys.database.Transaksi;
 import tusys.database.dbconn;
@@ -24,12 +29,12 @@ import tusys.database.dbconn;
  *
  * @author nim_13512501
  */
-public class jPanelAddTransaksi extends javax.swing.JPanel {
+public class jPanelEditTransaksi extends javax.swing.JPanel {
 
     /**
      * Creates new form jPanelAddDataRuang
      */
-    public jPanelAddTransaksi(JDialog closetarget,
+    public jPanelEditTransaksi(JDialog closetarget,
                                 dbconn targetdbconn) {
         initComponents();
         this.closeTarget=closetarget;
@@ -50,7 +55,7 @@ public class jPanelAddTransaksi extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButtonTambah = new javax.swing.JButton();
+        jButtonSimpan = new javax.swing.JButton();
         jButtonBatal = new javax.swing.JButton();
         jLabelJudul = new javax.swing.JLabel();
         jLabelNamaKegiatan = new javax.swing.JLabel();
@@ -61,15 +66,17 @@ public class jPanelAddTransaksi extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jTextFieldWaktuMulai = new javax.swing.JTextField();
         jTextFieldWaktuSelesai = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jTextFieldTanggalMulai = new javax.swing.JTextField();
         jLabelKuliah = new javax.swing.JLabel();
         jComboBoxKuliah = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
         jComboBoxRuang = new javax.swing.JComboBox();
 
-        jButtonTambah.setText("Tambah");
-        jButtonTambah.addActionListener(new java.awt.event.ActionListener() {
+        jButtonSimpan.setText("Simpan");
+        jButtonSimpan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonTambahActionPerformed(evt);
+                jButtonSimpanActionPerformed(evt);
             }
         });
 
@@ -80,7 +87,7 @@ public class jPanelAddTransaksi extends javax.swing.JPanel {
             }
         });
 
-        jLabelJudul.setText("Tambah Transaksi");
+        jLabelJudul.setText("Ubah Transaksi");
 
         jLabelNamaKegiatan.setText("Nama Kegiatan");
 
@@ -122,6 +129,15 @@ public class jPanelAddTransaksi extends javax.swing.JPanel {
             }
         });
 
+        jLabel4.setText("Tanggal");
+
+        jTextFieldTanggalMulai.setText("yyyy-mm-dd");
+        jTextFieldTanggalMulai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldTanggalMulaiActionPerformed(evt);
+            }
+        });
+
         jLabelKuliah.setText("Kuliah");
 
         jComboBoxKuliah.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -142,8 +158,15 @@ public class jPanelAddTransaksi extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(115, 115, 115)
-                        .addComponent(jLabelJudul)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(115, 115, 115)
+                                .addComponent(jLabelJudul))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jTextFieldTanggalMulai, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
@@ -152,7 +175,7 @@ public class jPanelAddTransaksi extends javax.swing.JPanel {
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(jButtonBatal, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonTambah, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jButtonSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabelNamaKegiatan)
@@ -200,9 +223,13 @@ public class jPanelAddTransaksi extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldWaktuMulai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldWaktuSelesai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextFieldTanggalMulai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonTambah)
+                    .addComponent(jButtonSimpan)
                     .addComponent(jButtonBatal))
                 .addContainerGap())
         );
@@ -217,7 +244,7 @@ public class jPanelAddTransaksi extends javax.swing.JPanel {
         getCloseTarget().setVisible(false);
     }//GEN-LAST:event_jButtonBatalActionPerformed
     
-    private void jButtonTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTambahActionPerformed
+    private void jButtonSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSimpanActionPerformed
         try {
             // TODO add your handling code here:
             //validasi input
@@ -243,8 +270,13 @@ public class jPanelAddTransaksi extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null, "waktu mulai harus sebelum waktu selesai");
                 return;
             }
-            Date start_date = new Date(new java.util.Date().getTime());
-            Date end_date = null;
+            Date start_date = null;
+            try{
+                start_date = Date.valueOf(jTextFieldTanggalMulai.getText());
+            }catch(IllegalArgumentException e){
+                JOptionPane.showMessageDialog(null, "format tanggal harus yyyy-mm-dd");
+                return;
+            }
             String nama_kegiatan = null;
             Kuliah kuliah = null;
             if (jenisKuliah()){
@@ -259,7 +291,7 @@ public class jPanelAddTransaksi extends javax.swing.JPanel {
             
             //bikin objek transaksinya
             Transaksi t = new Transaksi();
-            t.setId(null);
+            t.setId(getTargetId());
             t.setNama_kegiatan(nama_kegiatan);
             t.setStart_time(start_time);
             t.setFinish_time(finish_time);
@@ -269,32 +301,37 @@ public class jPanelAddTransaksi extends javax.swing.JPanel {
             
             
             
-            //cek apakah beririsan
-            Transaksi [] transaksiberirisan = getTargetdbconn().getTransaksiBeririsan(t);
-            if (transaksiberirisan.length>0){
-                String listp = "";
-                for (Transaksi tb : transaksiberirisan){
-                    listp+=tb.getNama_kegiatan()+" - " +
-                            tb.getJenis_kegiatan() + " - " +
-                            tb.getTanggal() + " - " + 
-                            "mulai" + tb.getStart_time() + " - " +
-                            "selesai" + tb.getFinish_time() + "\n";
+                //cek apakah beririsan
+                Transaksi [] transaksiberirisan = getTargetdbconn().getTransaksiBeririsan(t);
+                if (transaksiberirisan.length>0){
+                    String listp = "";
+                    for (Transaksi pb : transaksiberirisan){
+                        listp+=pb.getNama_kegiatan()+" - " +
+                                pb.getJenis_kegiatan() + " - " +
+                                pb.getTanggal() + " - " + 
+                                "mulai" + pb.getStart_time() + " - " +
+                                "selesai" + pb.getFinish_time() + "\n";
+                    }
+                    JOptionPane.showMessageDialog(null, "Jadwal bentrok dengan : \n" + listp);
+                    return;
                 }
-                JOptionPane.showMessageDialog(null, "Jadwal bentrok dengan : \n" + listp);
-                return;
-            }
-            //to query
-            int id_transaksi = getTargetdbconn().addTransaksi(t);
-            if (jenisKuliah())getTargetdbconn().addKuliahPemesan(kuliah.getKode_kuliah(), id_transaksi);
+                //to query
+                //getTargetdbconn().editTransaksi(t);
+//                if (getTargetdbconn().getKuliahTransaksi(t.getId())!=null)
+//                    getTargetdbconn().deleteKuliahTransaksi(t.getId());
+//                if (jenisKuliah())getTargetdbconn().addKuliahPemesan(kuliah.getKode_kuliah(), t.getId());
+                
+                JOptionPane.showMessageDialog(null, "belum selesai dibuat");
 
-            System.out.println("check " + getTargetdbconn());
+                System.out.println("check " + getTargetdbconn());
+           
         } catch (/*SQL*/Exception ex) {
             JOptionPane.showMessageDialog(null, "error " + ex);
             Logger.getLogger(jPanelAddDataKuliah.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         getCloseTarget().setVisible(false);
-    }//GEN-LAST:event_jButtonTambahActionPerformed
+    }//GEN-LAST:event_jButtonSimpanActionPerformed
     
     private void jTextFieldWaktuMulaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldWaktuMulaiActionPerformed
         // TODO add your handling code here:
@@ -303,6 +340,10 @@ public class jPanelAddTransaksi extends javax.swing.JPanel {
     private void jTextFieldWaktuSelesaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldWaktuSelesaiActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldWaktuSelesaiActionPerformed
+
+    private void jTextFieldTanggalMulaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTanggalMulaiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldTanggalMulaiActionPerformed
     
     private void jComboBoxKuliahComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jComboBoxKuliahComponentShown
         // TODO add your handling code here:
@@ -330,7 +371,7 @@ public class jPanelAddTransaksi extends javax.swing.JPanel {
             jComboBoxRuang.setModel(model);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "error: " + ex);
-            Logger.getLogger(jPanelAddTransaksi.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(jPanelEditTransaksi.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -355,24 +396,26 @@ public class jPanelAddTransaksi extends javax.swing.JPanel {
             jComboBoxKuliah.setModel(model);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "error: " + ex);
-            Logger.getLogger(jPanelAddTransaksi.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(jPanelEditTransaksi.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBatal;
-    private javax.swing.JButton jButtonTambah;
+    private javax.swing.JButton jButtonSimpan;
     private javax.swing.JComboBox jComboBoxJenisKegiatan;
     private javax.swing.JComboBox jComboBoxKuliah;
     private javax.swing.JComboBox jComboBoxRuang;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabelJudul;
     private javax.swing.JLabel jLabelKuliah;
     private javax.swing.JLabel jLabelNamaKegiatan;
     private javax.swing.JTextField jTextFieldNamaKegiatan;
+    private javax.swing.JTextField jTextFieldTanggalMulai;
     private javax.swing.JTextField jTextFieldWaktuMulai;
     private javax.swing.JTextField jTextFieldWaktuSelesai;
     // End of variables declaration//GEN-END:variables
@@ -422,12 +465,65 @@ public class jPanelAddTransaksi extends javax.swing.JPanel {
         }
     }
     
+    public void setTanggalMulai(Date tanggal){
+        jTextFieldTanggalMulai.setText(tanggal.toString());
+    }
+        
     public void setWaktuMulai(Time waktu){
         jTextFieldWaktuMulai.setText(waktu.toString());
     }
     
     public void setWaktuSelesai(Time waktu){
         jTextFieldWaktuSelesai.setText(waktu.toString());
+    }
+    
+    public void setKuliah(Kuliah ki){
+        setJenisKegiatan("Kuliah");
+        ComboBoxModel model = jComboBoxKuliah.getModel();
+        
+        //cari Kuliah yang id-nya sama lalu pilih
+        for (int i=0;i<model.getSize();i++){
+            Kuliah k = (Kuliah) model.getElementAt(i);
+            if (k.getKode_kuliah()==ki.getKode_kuliah()){
+                model.setSelectedItem(model.getElementAt(i));
+                return;
+            }
+        }
+    }
+    
+    public void setNamaKegiatan(String nama){
+        jTextFieldNamaKegiatan.setText(nama);
+    }
+    
+    public void setJenisKegiatan(String jeniskegiatan){
+        ComboBoxModel model = jComboBoxJenisKegiatan.getModel();
+        
+        //cari jenis kegiatan yang id-nya sama lalu pilih
+        for (int i=0;i<model.getSize();i++){
+            String s = (String) model.getElementAt(i);
+            if (s.equals(jeniskegiatan)){
+                model.setSelectedItem(model.getElementAt(i));
+                return;
+            }
+        }
+        
+        sesuaikanNamaKegiatan();
+    }
+    
+    private int targetId;
+
+    /**
+     * @return the targetId
+     */
+    public int getTargetId() {
+        return targetId;
+    }
+
+    /**
+     * @param targetId the targetId to set
+     */
+    public void setTargetId(int targetId) {
+        this.targetId = targetId;
     }
     
     

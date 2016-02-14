@@ -31,7 +31,7 @@ public class Transaksi {
         this.id_ruang = t.id_ruang;
     }
 
-    Transaksi() {
+    public Transaksi() {
         
     }
     
