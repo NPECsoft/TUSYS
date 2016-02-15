@@ -611,17 +611,63 @@ public class dbconn {
         return retval;
     }
     
-    public void addKuliahTransaksi(String kode_kuliah_kuliah, int id_pengguna_ruangan) throws SQLException{
+    public void addKuliahTransaksi(String kode_kuliah_kuliah, int id_penggunaan_ruangan) throws SQLException{
         String sql;
-        sql = "INSERT INTO kuliah_pemesan (kode_kuliah_kuliah, id_pengguna_ruangan) "
+        sql = "INSERT INTO kuliah_pengguna (kode_kuliah_kuliah, id_penggunaan_ruangan) "
                 + "VALUES (?,?)";
         
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setString(1, kode_kuliah_kuliah);
-        ps.setInt(2, id_pengguna_ruangan);
+        ps.setInt(2, id_penggunaan_ruangan);
         
         ps.executeUpdate();
         ps.close();
+    }
+    
+    public Kuliah getKuliahTransaksi(int pid) throws SQLException{
+        String sql;
+        sql = "SELECT * FROM kuliah_pengguna JOIN kuliah ON kode_kuliah = kode_kuliah_kuliah WHERE id_penggunaan_ruangan = ?";
+        
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setInt(1, pid);
+        
+        ResultSet rs = ps.executeQuery();
+        Kuliah retval = null;
+        if (rs.next())
+         retval = new Kuliah(rs.getString("kode_kuliah"),
+                            rs.getString("nama_kuliah"),
+                            rs.getInt("jumlah_peserta"));
+        
+        return retval;
+    }
+    
+    public void deleteKuliahTransaksi(int id_penggunaan_ruangan)throws SQLException{
+        String sql;
+        sql = "DELETE FROM kuliah_pengguna WHERE id_penggunaan_ruangan=?";
+        
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setInt(1, id_penggunaan_ruangan);
+        
+        ps.executeUpdate();
+        ps.close();
+        
+    }    
+    public void editTransaksi(Transaksi t) throws SQLException{
+        String sql;
+        sql = "UPDATE penggunaan_ruangan SET nama_kegiatan = ?, jenis_kegiatan = ?, start_time = ?,  finish_time = ?, tanggal = ?, id_ruang = ? WHERE id = ?";
+        
+        PreparedStatement ps = conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+        ps.setString(1, t.getNama_kegiatan());
+        ps.setString(2, t.getJenis_kegiatan());
+        ps.setTime(3, t.getStart_time());
+        ps.setTime(4, t.getFinish_time());
+        ps.setDate(5, t.getTanggal());
+        ps.setInt(6, t.getId_ruang());
+        ps.setInt(7,t.getId());
+        
+        ps.executeUpdate();
+        ps.close();
+        
     }
         
         

@@ -316,13 +316,10 @@ public class jPanelEditTransaksi extends javax.swing.JPanel {
                     return;
                 }
                 //to query
-                //getTargetdbconn().editTransaksi(t);
-//                if (getTargetdbconn().getKuliahTransaksi(t.getId())!=null)
-//                    getTargetdbconn().deleteKuliahTransaksi(t.getId());
-//                if (jenisKuliah())getTargetdbconn().addKuliahPemesan(kuliah.getKode_kuliah(), t.getId());
-                
-                JOptionPane.showMessageDialog(null, "belum selesai dibuat");
-
+                getTargetdbconn().editTransaksi(t);
+                if (getTargetdbconn().getKuliahTransaksi(t.getId())!=null)
+                    getTargetdbconn().deleteKuliahTransaksi(t.getId());
+                if (jenisKuliah())getTargetdbconn().addKuliahPemesan(kuliah.getKode_kuliah(), t.getId());
                 System.out.println("check " + getTargetdbconn());
            
         } catch (/*SQL*/Exception ex) {
