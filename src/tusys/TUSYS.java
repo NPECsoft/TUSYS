@@ -16,6 +16,8 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
 import tusys.database.DatabaseLoginJDialog;
 import tusys.view.MainMenu;
 import tusys.database.dbconn;
@@ -109,7 +111,16 @@ public class TUSYS {
     }
 
     public TUSYS() throws SQLException, ClassNotFoundException {
-        
+        try {
+            for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            // If Nimbus is not available, you can set the GUI to another look and feel.
+        }
     }
     
 }
