@@ -186,6 +186,11 @@ public class jPanelAddDataRuang extends javax.swing.JPanel {
                     jTextFieldFasilitas.getText());
             
             System.out.println("check " + getTargetdbconn());
+            Ruang ruangnamasama = getTargetdbconn().getRuangByNama(jTextFieldNamaRuangan.getText());
+            if (ruangnamasama!=null){
+                JOptionPane.showMessageDialog(null, "Ruang dengan nama " + ruangnamasama.getNama_ruang() + "sudah ada");
+                return;
+            }
             getTargetdbconn().addRuang(r);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "error " + ex);

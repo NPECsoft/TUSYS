@@ -268,6 +268,22 @@ public class dbconn {
         return retv.toArray(new Ruang[retv.size()]);
     }
     
+    public Ruang getRuangByNama(String nama) throws SQLException{
+        String sql;
+        sql = "SELECT * FROM ruang WHERE nama_ruang=?";
+        
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setString(1,nama);
+        
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()){
+            return new Ruang(rs.getInt("id"),rs.getString("nama_ruang"),rs.getString("jenis_ruang"),rs.getInt("kapasitas_ruang"),rs.getString("fasilitas"));
+        }else{
+            return null;
+        }
+        
+    }
+    
     public void deleteRuangById(int id) throws SQLException{
         String sql;
         stmt = conn.createStatement();

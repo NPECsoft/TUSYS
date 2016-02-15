@@ -199,6 +199,13 @@ public class jPanelEditDataRuang extends javax.swing.JPanel {
                     jTextFieldFasilitas.getText());
             
             System.out.println("check " + getTargetdbconn());
+            Ruang ruangnamasama = getTargetdbconn().getRuangByNama(jTextFieldNamaRuangan.getText());
+            if (ruangnamasama!=null){
+                if (ruangnamasama.getId()!= this.getTargetID()){
+                    JOptionPane.showMessageDialog(null, "Ruang dengan nama " + ruangnamasama.getNama_ruang() + "sudah ada");
+                    return;
+                }
+            }
             getTargetdbconn().editRuangById(getTargetID(), r);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "error " + ex);
