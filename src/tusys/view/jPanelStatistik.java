@@ -11,14 +11,13 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
 import org.jfree.chart.JFreeChart;
-import org.jfree.chart.axis.NumberTickUnit;
 import org.jfree.chart.axis.ValueAxis;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.plot.XYPlot;
 import org.jfree.data.category.DefaultCategoryDataset;
 import tusys.database.*;
 
@@ -185,7 +184,9 @@ public class jPanelStatistik extends javax.swing.JPanel {
             tanggal_mulai = new java.sql.Date(sdf.parse(jTextField1.getText()).getTime());
             tanggal_selesai = new java.sql.Date(sdf.parse(jTextField2.getText()).getTime());
         } catch (ParseException ex) {
-            Logger.getLogger(jPanelStatistik.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Format tanggal masukan salah");
+            return;
+            //Logger.getLogger(jPanelStatistik.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         if (jenis_kegiatan.equals("Semua")) {
@@ -219,7 +220,8 @@ public class jPanelStatistik extends javax.swing.JPanel {
         
         ChartFrame frame = new ChartFrame("Statistik",chart);
         frame.setVisible(true);
-        frame.setSize(450,350);
+        frame.setLocation(500,200);
+        frame.setSize(565,410);
         
         /*
         //masih ga keluar gambarnya
