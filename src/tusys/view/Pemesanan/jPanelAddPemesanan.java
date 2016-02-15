@@ -37,12 +37,14 @@ public class jPanelAddPemesanan extends javax.swing.JPanel {
         initComponents();
         this.closeTarget=closetarget;
         this.targetdbconn=targetdbconn;
+        closeTarget.setLocation(540,205);
         jTextFieldNamaKegiatan.setVisible(false);
         jLabelNamaKegiatan.setVisible(false);
         this.sesuaikanFrekuensi();
         this.sesuaikanNamaKegiatan();
         this.refreshKuliah();
         this.refreshRuang();
+        
     }
     
     /**
