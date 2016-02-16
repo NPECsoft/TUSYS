@@ -285,7 +285,7 @@ public class jPanelAddTransaksi extends javax.swing.JPanel {
             }
             //to query
             int id_transaksi = getTargetdbconn().addTransaksi(t);
-            if (jenisKuliah())getTargetdbconn().addKuliahPemesan(kuliah.getKode_kuliah(), id_transaksi);
+            if (jenisKuliah())getTargetdbconn().addKuliahTransaksi(kuliah.getKode_kuliah(), id_transaksi);
 
             System.out.println("check " + getTargetdbconn());
         } catch (/*SQL*/Exception ex) {
