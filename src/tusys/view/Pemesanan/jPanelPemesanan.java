@@ -62,6 +62,7 @@ public class jPanelPemesanan extends javax.swing.JPanel {
         jTextFieldTanggalSelesai = new javax.swing.JTextField();
         jLabelWarningTanggalMulai = new javax.swing.JLabel();
         jLabelWarningTanggalSelesai = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -111,11 +112,20 @@ public class jPanelPemesanan extends javax.swing.JPanel {
             }
         });
 
+        jLabelWarningTanggalMulai.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelWarningTanggalMulai.setForeground(new java.awt.Color(255, 0, 0));
         jLabelWarningTanggalMulai.setText("format yyyy-mm-dd");
 
+        jLabelWarningTanggalSelesai.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelWarningTanggalSelesai.setForeground(new java.awt.Color(255, 0, 0));
         jLabelWarningTanggalSelesai.setText("format yyyy-mm-dd");
+
+        jButton1.setText("Tampilkan");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -126,29 +136,30 @@ public class jPanelPemesanan extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBoxRuang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jComboBoxRuang, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel1)
                         .addGap(4, 4, 4)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabelWarningTanggalMulai)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabelWarningTanggalSelesai))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextFieldTanggalMulai, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldTanggalSelesai, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 26, Short.MAX_VALUE)))
+                            .addComponent(jLabelWarningTanggalMulai, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextFieldTanggalMulai))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabelWarningTanggalSelesai, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextFieldTanggalSelesai))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonTambah)
-                .addGap(253, 253, 253))
+                .addComponent(jButtonTambah, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(205, 205, 205))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -166,9 +177,11 @@ public class jPanelPemesanan extends javax.swing.JPanel {
                     .addComponent(jLabelWarningTanggalMulai)
                     .addComponent(jLabelWarningTanggalSelesai))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
-                .addComponent(jButtonTambah)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonTambah)
+                    .addComponent(jButton1))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -212,14 +225,24 @@ public class jPanelPemesanan extends javax.swing.JPanel {
         refresh();
     }//GEN-LAST:event_jTextFieldTanggalSelesaiActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        if (jTextFieldTanggalMulai.getText().equals("")||jTextFieldTanggalSelesai.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Tanggal tidak boleh kosong");
+            return;
+        }
+        refresh();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     private void refresh(){
         //validasi input
         Date tanggalmulai = null;
-        try{
+        try {
             tanggalmulai = Date.valueOf(jTextFieldTanggalMulai.getText());
             jLabelWarningTanggalMulai.setVisible(false);
-        }catch(IllegalArgumentException e){
+        } catch(IllegalArgumentException e){
             jLabelWarningTanggalMulai.setVisible(true);
+            JOptionPane.showMessageDialog(null, "Format tanggal salah");
             return;
         }
         Date tanggalselesai = null;
@@ -228,6 +251,7 @@ public class jPanelPemesanan extends javax.swing.JPanel {
             jLabelWarningTanggalSelesai.setVisible(false);
         }catch(IllegalArgumentException e){
             jLabelWarningTanggalSelesai.setVisible(true);
+            JOptionPane.showMessageDialog(null, "Format tanggal salah");
             return;
         }
         Ruang ruangterpilih = (Ruang) jComboBoxRuang.getModel().getSelectedItem();
@@ -330,6 +354,7 @@ public class jPanelPemesanan extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonTambah;
     private javax.swing.JComboBox jComboBoxRuang;
     private javax.swing.JLabel jLabel1;

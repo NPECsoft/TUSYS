@@ -20,66 +20,65 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jLabelWarningTanggal" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextFieldTanggal" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jTextFieldTanggal" min="-2" pref="100" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jLabelWarningTanggal" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                      <Component id="jLabelWaktuMulai" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                              <Component id="jLabelWaktuMulai" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jTextFieldWaktuMulai" min="-2" pref="79" max="-2" attributes="0"/>
+                          <Component id="jLabelWarningWaktuMulai" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="jTextFieldWaktuMulai" min="-2" pref="89" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jLabelWaktuSelesai" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jTextFieldWaktuSelesai" min="-2" pref="79" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                              <Component id="jLabelWarningWaktuMulai" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="jLabelWarningWaktuSelesai" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                           </Group>
                       </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="jTextFieldWaktuSelesai" min="-2" pref="89" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jButton1" min="-2" pref="67" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jLabelWarningWaktuSelesai" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="0" pref="22" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextFieldTanggal" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelWaktuMulai" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextFieldWaktuMulai" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelWaktuSelesai" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextFieldWaktuSelesai" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="jTextFieldTanggal" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabelWarningTanggal" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabelWarningWaktuMulai" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabelWarningWaktuMulai" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabelWarningWaktuSelesai" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabelWaktuMulai" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextFieldWaktuMulai" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabelWaktuSelesai" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextFieldWaktuSelesai" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabelWarningWaktuSelesai" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="jLabelWarningTanggal" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" pref="275" max="-2" attributes="0"/>
+              <EmptySpace pref="19" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" pref="489" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -118,6 +117,9 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelWarningTanggal">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="11" style="1"/>
+        </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="0" red="ff" type="rgb"/>
         </Property>
@@ -146,6 +148,9 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelWarningWaktuMulai">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="11" style="1"/>
+        </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="0" red="ff" type="rgb"/>
         </Property>
@@ -154,11 +159,22 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelWarningWaktuSelesai">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="11" style="1"/>
+        </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="0" red="ff" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="format HH:MM"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="cari"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

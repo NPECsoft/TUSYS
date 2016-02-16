@@ -341,8 +341,6 @@ public class jPanelTransaksi extends javax.swing.JPanel {
     private javax.swing.JTextField jTextFieldTanggalSelesai;
     // End of variables declaration//GEN-END:variables
 
-    private MainMenu mainMenu;
-
     /**
      * @return the mainMenu
      */
@@ -356,4 +354,8 @@ public class jPanelTransaksi extends javax.swing.JPanel {
     public void setMainMenu(MainMenu mainmenu) {
         this.mainMenu = mainmenu;
     }
+    
+    private MainMenu mainMenu;
+
+    
 }

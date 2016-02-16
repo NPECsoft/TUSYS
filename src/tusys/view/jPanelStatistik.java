@@ -11,13 +11,13 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.ValueAxis;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.plot.XYPlot;
 import org.jfree.data.category.DefaultCategoryDataset;
 import tusys.database.*;
 
@@ -151,17 +151,15 @@ public class jPanelStatistik extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
                         .addGap(15, 15, 15)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
@@ -186,7 +184,9 @@ public class jPanelStatistik extends javax.swing.JPanel {
             tanggal_mulai = new java.sql.Date(sdf.parse(jTextField1.getText()).getTime());
             tanggal_selesai = new java.sql.Date(sdf.parse(jTextField2.getText()).getTime());
         } catch (ParseException ex) {
-            Logger.getLogger(jPanelStatistik.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Format tanggal masukan salah");
+            return;
+            //Logger.getLogger(jPanelStatistik.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         if (jenis_kegiatan.equals("Semua")) {
@@ -212,11 +212,16 @@ public class jPanelStatistik extends javax.swing.JPanel {
         JFreeChart chart = ChartFactory.createBarChart("Statistik Penggunaan Ruangan", "Ruangan", "Frekuensi", dataset, PlotOrientation.VERTICAL, false, true, false);
         CategoryPlot p = chart.getCategoryPlot();
         p.setRangeGridlinePaint(Color.BLACK);
-
+        ValueAxis yAxis = chart.getCategoryPlot().getRangeAxis();
+        yAxis.setRange(0.0, 100.0);
+        p.setRangeAxis(yAxis);
+        
+        
         
         ChartFrame frame = new ChartFrame("Statistik",chart);
         frame.setVisible(true);
-        frame.setSize(450,350);
+        frame.setLocation(500,200);
+        frame.setSize(565,410);
         
         /*
         //masih ga keluar gambarnya
