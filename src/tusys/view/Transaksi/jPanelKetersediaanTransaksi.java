@@ -186,7 +186,7 @@ public class jPanelKetersediaanTransaksi extends javax.swing.JPanel {
         }
         
         try {
-            Ruang [] allruang = getMainMenu().getDbc().getRuangAvaliableDipesan(tanggal, waktu_mulai, waktu_selesai);
+            Ruang [] allruang = getMainMenu().getDbc().getRuangAvailableDipesan(tanggal, waktu_mulai, waktu_selesai);
             
             DefaultTableModel model = new DefaultTableModel();
             model.addColumn("id");

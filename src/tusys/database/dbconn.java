@@ -451,7 +451,7 @@ public class dbconn {
         
     }
     
-    public Ruang[] getRuangAvaliableDipesan(Date tanggal, Time waktu_mulai, Time waktu_selesai) throws SQLException{
+    public Ruang[] getRuangAvailableDipesan(Date tanggal, Time waktu_mulai, Time waktu_selesai) throws SQLException{
         String sql;
         sql = "SELECT * FROM ruang "
                 + "WHERE id NOT IN "
