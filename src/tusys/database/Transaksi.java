@@ -21,6 +21,11 @@ public class Transaksi {
     private Date tanggal;
     private int id_ruang;
     
+    
+    public Transaksi() {
+        
+    }
+    
     public Transaksi(Transaksi t){
         this.id = t.id;
         this.nama_kegiatan = t.nama_kegiatan;
@@ -31,9 +36,6 @@ public class Transaksi {
         this.id_ruang = t.id_ruang;
     }
 
-    public Transaksi() {
-        
-    }
     
     /**
      * @return the id
