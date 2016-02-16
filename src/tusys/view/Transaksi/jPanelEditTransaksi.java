@@ -39,6 +39,7 @@ public class jPanelEditTransaksi extends javax.swing.JPanel {
         initComponents();
         this.closeTarget=closetarget;
         this.targetdbconn=targetdbconn;
+        closeTarget.setLocation(540,205);
         jTextFieldNamaKegiatan.setVisible(false);
         jLabelNamaKegiatan.setVisible(false);
         this.sesuaikanNamaKegiatan();
