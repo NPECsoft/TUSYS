@@ -60,6 +60,7 @@ public class jPanelTransaksi extends javax.swing.JPanel {
         jTextFieldTanggalSelesai = new javax.swing.JTextField();
         jLabelWarningTanggalMulai = new javax.swing.JLabel();
         jLabelWarningTanggalSelesai = new javax.swing.JLabel();
+        jButtonTambah1 = new javax.swing.JButton();
 
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -109,11 +110,20 @@ public class jPanelTransaksi extends javax.swing.JPanel {
             }
         });
 
-        jLabelWarningTanggalMulai.setForeground(new java.awt.Color(255, 0, 0));
+        jLabelWarningTanggalMulai.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabelWarningTanggalMulai.setForeground(new java.awt.Color(0, 0, 255));
         jLabelWarningTanggalMulai.setText("format yyyy-mm-dd");
 
-        jLabelWarningTanggalSelesai.setForeground(new java.awt.Color(255, 0, 0));
+        jLabelWarningTanggalSelesai.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabelWarningTanggalSelesai.setForeground(new java.awt.Color(0, 0, 255));
         jLabelWarningTanggalSelesai.setText("format yyyy-mm-dd");
+
+        jButtonTambah1.setText("Tampilkan");
+        jButtonTambah1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonTambah1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -122,31 +132,33 @@ public class jPanelTransaksi extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBoxRuang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jComboBoxRuang, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel1)
                         .addGap(4, 4, 4)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabelWarningTanggalMulai)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabelWarningTanggalSelesai))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextFieldTanggalMulai, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldTanggalSelesai, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 26, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextFieldTanggalMulai)
+                            .addComponent(jLabelWarningTanggalMulai, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(2, 4, Short.MAX_VALUE)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelWarningTanggalSelesai)
+                            .addComponent(jTextFieldTanggalSelesai, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(122, 122, 122)
                 .addComponent(jButtonTambah)
-                .addGap(253, 253, 253))
+                .addGap(26, 26, 26)
+                .addComponent(jButtonTambah1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,10 +176,12 @@ public class jPanelTransaksi extends javax.swing.JPanel {
                     .addComponent(jLabelWarningTanggalMulai)
                     .addComponent(jLabelWarningTanggalSelesai))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
-                .addComponent(jButtonTambah)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 456, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonTambah1)
+                    .addComponent(jButtonTambah))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -210,6 +224,11 @@ public class jPanelTransaksi extends javax.swing.JPanel {
         refresh();
     }//GEN-LAST:event_jTextFieldTanggalSelesaiActionPerformed
 
+    private void jButtonTambah1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTambah1ActionPerformed
+        // TODO add your handling code here:
+        refresh();
+    }//GEN-LAST:event_jButtonTambah1ActionPerformed
+
     private void refresh(){
         //validasi input
         Date tanggalmulai = null;
@@ -228,6 +247,12 @@ public class jPanelTransaksi extends javax.swing.JPanel {
             jLabelWarningTanggalSelesai.setVisible(true);
             return;
         }
+        
+        if (tanggalmulai.after(tanggalselesai)) {
+            JOptionPane.showMessageDialog(null, "tanggal mulai harus sebelum tanggal selesai");
+            return;
+        }
+        
         Ruang ruangterpilih = (Ruang) jComboBoxRuang.getModel().getSelectedItem();
         int idruang = ruangterpilih.getId();
                
@@ -329,6 +354,7 @@ public class jPanelTransaksi extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonTambah;
+    private javax.swing.JButton jButtonTambah1;
     private javax.swing.JComboBox jComboBoxRuang;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

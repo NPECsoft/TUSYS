@@ -113,11 +113,11 @@ public class jPanelPemesanan extends javax.swing.JPanel {
         });
 
         jLabelWarningTanggalMulai.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabelWarningTanggalMulai.setForeground(new java.awt.Color(255, 0, 0));
+        jLabelWarningTanggalMulai.setForeground(new java.awt.Color(0, 0, 255));
         jLabelWarningTanggalMulai.setText("format yyyy-mm-dd");
 
         jLabelWarningTanggalSelesai.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabelWarningTanggalSelesai.setForeground(new java.awt.Color(255, 0, 0));
+        jLabelWarningTanggalSelesai.setForeground(new java.awt.Color(0, 0, 255));
         jLabelWarningTanggalSelesai.setText("format yyyy-mm-dd");
 
         jButton1.setText("Tampilkan");
@@ -239,9 +239,9 @@ public class jPanelPemesanan extends javax.swing.JPanel {
         Date tanggalmulai = null;
         try {
             tanggalmulai = Date.valueOf(jTextFieldTanggalMulai.getText());
-            jLabelWarningTanggalMulai.setVisible(false);
+            
         } catch(IllegalArgumentException e){
-            jLabelWarningTanggalMulai.setVisible(true);
+            
             JOptionPane.showMessageDialog(null, "Format tanggal salah");
             return;
         }
@@ -254,6 +254,12 @@ public class jPanelPemesanan extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Format tanggal salah");
             return;
         }
+        
+        if (tanggalmulai.after(tanggalselesai)) {
+            JOptionPane.showMessageDialog(null, "tanggal mulai harus sebelum tanggal selesai");
+            return;
+        }
+        
         Ruang ruangterpilih = (Ruang) jComboBoxRuang.getModel().getSelectedItem();
         int idruang = ruangterpilih.getId();
                

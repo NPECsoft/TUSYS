@@ -35,23 +35,29 @@
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabelNamaKegiatan" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextFieldWaktuMulai" alignment="0" min="-2" pref="104" max="-2" attributes="0"/>
                                   <Component id="jLabelKuliah" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jTextFieldWaktuMulai" alignment="0" min="-2" pref="104" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="82" max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextFieldNamaKegiatan" alignment="0" pref="190" max="32767" attributes="0"/>
-                                  <Component id="jComboBoxJenisKegiatan" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jTextFieldWaktuSelesai" alignment="0" min="-2" pref="104" max="-2" attributes="0"/>
-                                  <Component id="jComboBoxKuliah" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jComboBoxRuang" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jTextFieldWaktuSelesai" min="-2" pref="104" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jTextFieldNamaKegiatan" alignment="0" pref="190" max="32767" attributes="0"/>
+                                      <Component id="jComboBoxKuliah" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jComboBoxRuang" max="32767" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                       </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="117" max="32767" attributes="0"/>
+                      <Component id="jComboBoxJenisKegiatan" min="-2" pref="190" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -70,6 +76,11 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jComboBoxJenisKegiatan" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jTextFieldNamaKegiatan" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabelNamaKegiatan" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -78,27 +89,22 @@
                   <Component id="jLabelKuliah" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jComboBoxKuliah" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jComboBoxJenisKegiatan" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jTextFieldWaktuMulai" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jTextFieldWaktuSelesai" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="16" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jButtonTambah" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jButtonBatal" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonTambah" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

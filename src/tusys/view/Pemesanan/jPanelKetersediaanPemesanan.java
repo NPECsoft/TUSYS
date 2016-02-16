@@ -85,7 +85,7 @@ public class jPanelKetersediaanPemesanan extends javax.swing.JPanel {
         });
 
         jLabelWarningTanggal.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabelWarningTanggal.setForeground(new java.awt.Color(255, 0, 0));
+        jLabelWarningTanggal.setForeground(new java.awt.Color(0, 0, 255));
         jLabelWarningTanggal.setText("format yyyy-mm-dd");
 
         jLabelWaktuMulai.setText("waktu Mulai");
@@ -105,11 +105,11 @@ public class jPanelKetersediaanPemesanan extends javax.swing.JPanel {
         });
 
         jLabelWarningWaktuMulai.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabelWarningWaktuMulai.setForeground(new java.awt.Color(255, 0, 0));
+        jLabelWarningWaktuMulai.setForeground(new java.awt.Color(0, 0, 255));
         jLabelWarningWaktuMulai.setText("format HH:MM");
 
         jLabelWarningWaktuSelesai.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabelWarningWaktuSelesai.setForeground(new java.awt.Color(255, 0, 0));
+        jLabelWarningWaktuSelesai.setForeground(new java.awt.Color(0, 0, 255));
         jLabelWarningWaktuSelesai.setText("format HH:MM");
 
         jButton1.setText("cari");
