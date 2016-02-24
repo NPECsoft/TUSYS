@@ -234,17 +234,13 @@ public class jPanelTransaksi extends javax.swing.JPanel {
         Date tanggalmulai = null;
         try{
             tanggalmulai = Date.valueOf(jTextFieldTanggalMulai.getText());
-            jLabelWarningTanggalMulai.setVisible(false);
         }catch(IllegalArgumentException e){
-            jLabelWarningTanggalMulai.setVisible(true);
             return;
         }
         Date tanggalselesai = null;
         try{
             tanggalselesai = Date.valueOf(jTextFieldTanggalSelesai.getText());
-            jLabelWarningTanggalSelesai.setVisible(false);
         }catch(IllegalArgumentException e){
-            jLabelWarningTanggalSelesai.setVisible(true);
             return;
         }
         

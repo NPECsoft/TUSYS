@@ -209,6 +209,11 @@ public class jPanelKetersediaanPemesanan extends javax.swing.JPanel {
             return;
         }
         
+        if (waktu_selesai.before(waktu_mulai)){
+            JOptionPane.showMessageDialog(null, "waktu mulai harus sebelum waktu selesai");
+            return;
+        }
+        
         try {
             Ruang [] allruang = getMainMenu().getDbc().getRuangAvailableDipesan(tanggal, waktu_mulai, waktu_selesai);
             

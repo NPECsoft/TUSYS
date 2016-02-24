@@ -248,9 +248,9 @@ public class jPanelPemesanan extends javax.swing.JPanel {
         Date tanggalselesai = null;
         try{
             tanggalselesai = Date.valueOf(jTextFieldTanggalSelesai.getText());
-            jLabelWarningTanggalSelesai.setVisible(false);
+
         }catch(IllegalArgumentException e){
-            jLabelWarningTanggalSelesai.setVisible(true);
+
             JOptionPane.showMessageDialog(null, "Format tanggal salah");
             return;
         }
