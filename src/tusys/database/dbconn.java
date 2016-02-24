@@ -723,7 +723,7 @@ public class dbconn {
         Ruang[] ruangan = getAllRuang();
         
         for (int i = 0; i < ruangan.length; i++) {
-            sql = "SELECT COUNT(*) AS jumlah_penggunaan FROM penggunaan_ruangan WHERE jenis_kegiatan = ? AND tanggal <= ? AND tanggal >= ? AND id_ruang = ?";
+            sql = "SELECT COUNT(*) AS jumlah_penggunaan FROM penggunaan_ruangan WHERE jenis_kegiatan = ? AND tanggal >= ? AND tanggal <= ? AND id_ruang = ?";
             
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, jenis_kegiatan);
@@ -754,7 +754,7 @@ public class dbconn {
         Ruang[] ruangan = getAllRuang();
         
         for (int i = 0; i < ruangan.length; i++) {
-            sql = "SELECT COUNT(*) AS jumlah_penggunaan FROM penggunaan_ruangan WHERE tanggal <= ? AND tanggal >= ? AND id_ruang = ?";
+            sql = "SELECT COUNT(*) AS jumlah_penggunaan FROM penggunaan_ruangan WHERE tanggal >= ? AND tanggal <= ? AND id_ruang = ?";
             
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setDate(1, tanggal_mulai);
