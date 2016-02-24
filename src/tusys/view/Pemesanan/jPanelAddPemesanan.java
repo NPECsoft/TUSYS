@@ -325,6 +325,10 @@ public class jPanelAddPemesanan extends javax.swing.JPanel {
             if (!frekuensiSekali())
             try{
                 end_date = Date.valueOf(jTextFieldTanggalSelesai.getText());
+                if (start_date.after(end_date)) {
+                    JOptionPane.showMessageDialog(null, "tanggal mulai harus sebelum tanggal selesai");
+                    return;
+                }
             }catch(IllegalArgumentException e){
                 JOptionPane.showMessageDialog(null, "format tanggal harus yyyy-mm-dd");
                 return;
@@ -332,11 +336,6 @@ public class jPanelAddPemesanan extends javax.swing.JPanel {
             
             if (start_time.after(finish_time)) {
                 JOptionPane.showMessageDialog(null, "waktu mulai harus sebelum waktu selesai");
-                return;
-            }
-            
-            if (start_date.after(end_date)&&(!frekuensiSekali())) {
-                JOptionPane.showMessageDialog(null, "tanggal mulai harus sebelum tanggal selesai");
                 return;
             }
             
