@@ -70,7 +70,13 @@
     nbproject/build-impl.xml file. 
 
     -->
+    
      <target name="package-for-store" depends="jar">
+    <delete dir="dist/lib"/>
+    <mkdir dir="dist/lib"/>
+    <copy todir="./dist/lib">
+        <fileset dir="./lib"/>
+    </copy>
     <property name="store.jar.name" value="TUSYS"/>
     <property name="store.dir" value="store"/>
     <property name="store.jar" value="${store.dir}/${store.jar.name}.jar"/>
