@@ -1,7 +1,9 @@
 # TUSYS
 TUSYS is a desktop application for "IF3250 - Software Project" course project. It is intended to build administration room and class booking/transaction for Informatics department.
 
-untuk build yang siap di-deploy, klik kanan di build.xml -> run target -> Other Targets -> package-for-store.
+untuk build yang siap di-deploy, 
+pastikan ada folder dist/lib dan store, lalu
+klik kanan di build.xml -> run target -> Other Targets -> package-for-store.
 Lihat jar hasilnya di direktori store
 
 Langkah-langkah deployment:
