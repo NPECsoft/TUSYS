@@ -108,11 +108,11 @@ public class jPanelStatistik extends javax.swing.JPanel {
         });
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel4.setForeground(new java.awt.Color(0, 0, 255));
         jLabel4.setText("Format YYYY-MM-DD");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel5.setForeground(new java.awt.Color(0, 0, 255));
         jLabel5.setText("Format YYYY-MM-DD");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -183,6 +183,10 @@ public class jPanelStatistik extends javax.swing.JPanel {
         try {
             tanggal_mulai = new java.sql.Date(sdf.parse(jTextField1.getText()).getTime());
             tanggal_selesai = new java.sql.Date(sdf.parse(jTextField2.getText()).getTime());
+            if (tanggal_mulai.after(tanggal_selesai)) {
+                JOptionPane.showMessageDialog(null, "tanggal mulai harus sebelum tanggal selesai");
+                return;
+            }
         } catch (ParseException ex) {
             JOptionPane.showMessageDialog(null, "Format tanggal masukan salah");
             return;

@@ -35,8 +35,8 @@ public class jPanelKetersediaanTransaksi extends javax.swing.JPanel {
      */
     public jPanelKetersediaanTransaksi() {
         initComponents();
-        jLabelWarningWaktuMulai.setVisible(false);
-        jLabelWarningWaktuSelesai.setVisible(false);
+        //jLabelWarningWaktuMulai.setVisible(false);
+        //jLabelWarningWaktuSelesai.setVisible(false);
     }
 
     /**
@@ -57,6 +57,7 @@ public class jPanelKetersediaanTransaksi extends javax.swing.JPanel {
         jLabelWarningWaktuMulai = new javax.swing.JLabel();
         jLabelWarningWaktuSelesai = new javax.swing.JLabel();
         jLabelTanggal = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         jTableDaftarRuang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -84,10 +85,12 @@ public class jPanelKetersediaanTransaksi extends javax.swing.JPanel {
             }
         });
 
-        jLabelWarningWaktuMulai.setForeground(new java.awt.Color(255, 0, 0));
+        jLabelWarningWaktuMulai.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabelWarningWaktuMulai.setForeground(new java.awt.Color(0, 0, 255));
         jLabelWarningWaktuMulai.setText("format HH:MM");
 
-        jLabelWarningWaktuSelesai.setForeground(new java.awt.Color(255, 0, 0));
+        jLabelWarningWaktuSelesai.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabelWarningWaktuSelesai.setForeground(new java.awt.Color(0, 0, 255));
         jLabelWarningWaktuSelesai.setText("format HH:MM");
 
         jLabelTanggal.addContainerListener(new java.awt.event.ContainerAdapter() {
@@ -101,35 +104,42 @@ public class jPanelKetersediaanTransaksi extends javax.swing.JPanel {
             }
         });
 
+        jButton1.setText("cari");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(11, 11, 11)
+                        .addGap(21, 21, 21)
                         .addComponent(jLabelTanggal)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabelWaktuMulai)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabelWaktuMulai)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldWaktuMulai, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabelWaktuSelesai)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldWaktuSelesai, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jTextFieldWaktuMulai, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabelWaktuSelesai))
+                            .addComponent(jLabelWarningWaktuMulai))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(jLabelWarningWaktuMulai)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabelWarningWaktuSelesai)
-                                .addGap(36, 36, 36)))
-                        .addGap(146, 146, 146))
-                    .addComponent(jScrollPane1))
-                .addContainerGap())
+                                .addComponent(jTextFieldWaktuSelesai, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabelWarningWaktuSelesai)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,20 +150,19 @@ public class jPanelKetersediaanTransaksi extends javax.swing.JPanel {
                         .addComponent(jLabelTanggal))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(31, 31, 31)
-                                .addComponent(jLabelWarningWaktuMulai))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabelWaktuMulai)
-                                    .addComponent(jTextFieldWaktuMulai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabelWaktuSelesai)
-                                    .addComponent(jTextFieldWaktuSelesai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabelWarningWaktuSelesai)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelWaktuMulai)
+                            .addComponent(jTextFieldWaktuMulai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelWaktuSelesai)
+                            .addComponent(jTextFieldWaktuSelesai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelWarningWaktuSelesai)
+                            .addComponent(jLabelWarningWaktuMulai))))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 484, Short.MAX_VALUE)
+                .addGap(27, 27, 27))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -169,9 +178,10 @@ public class jPanelKetersediaanTransaksi extends javax.swing.JPanel {
             String str = jTextFieldWaktuMulai.getText();
             if (str.length()<=5) str+=":00";
             waktu_mulai = Time.valueOf(str);
-            jLabelWarningWaktuMulai.setVisible(false);
+            //jLabelWarningWaktuMulai.setVisible(false);
        }catch(IllegalArgumentException e){
-            jLabelWarningWaktuMulai.setVisible(true);
+            //jLabelWarningWaktuMulai.setVisible(true);
+           JOptionPane.showMessageDialog(null, "Format waktu mulai harus hh:mm");
             return;
         }
         final Time waktu_selesai;
@@ -179,11 +189,18 @@ public class jPanelKetersediaanTransaksi extends javax.swing.JPanel {
             String str = jTextFieldWaktuSelesai.getText();
             if (str.length()<=5) str+=":00";
             waktu_selesai = Time.valueOf(str);
-            jLabelWarningWaktuSelesai.setVisible(false);
+            //jLabelWarningWaktuSelesai.setVisible(false);
         }catch(IllegalArgumentException e){
-            jLabelWarningWaktuSelesai.setVisible(true);
+            //jLabelWarningWaktuSelesai.setVisible(true);
+            JOptionPane.showMessageDialog(null, "Format waktu selesai harus hh:mm");
             return;
         }
+        
+        if (waktu_mulai.after(waktu_selesai)) {
+                JOptionPane.showMessageDialog(null, "waktu mulai harus sebelum waktu selesai");
+                return;
+        }
+        
         
         try {
             Ruang [] allruang = getMainMenu().getDbc().getRuangAvailableDigunakan(tanggal, waktu_mulai, waktu_selesai);
@@ -259,8 +276,14 @@ public class jPanelKetersediaanTransaksi extends javax.swing.JPanel {
         refresh();        // TODO add your handling code here:
     }//GEN-LAST:event_jLabelTanggalComponentAdded
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        refresh();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabelTanggal;
     private javax.swing.JLabel jLabelWaktuMulai;
     private javax.swing.JLabel jLabelWaktuSelesai;

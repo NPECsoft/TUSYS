@@ -361,8 +361,8 @@ public class dbconn {
         
         sql = "SELECT * FROM pemesanan_ruangan WHERE "
                 + "id_ruang = ? AND ("
-                + "(start_time <= ? AND finish_time >= ?) OR "
-                + "(finish_time >= ? AND start_time <= ?) "
+                + "(start_time <= ? AND finish_time > ?) OR "
+                + "(finish_time >= ? AND start_time < ?) "
                 + ") AND tanggal = ?";
         
         
@@ -457,8 +457,8 @@ public class dbconn {
                 + "WHERE id NOT IN "
                 + "(SELECT id_ruang as id FROM pemesanan_ruangan WHERE "
                 + "("
-                + "(start_time <= ? AND finish_time >= ?) OR "
-                + "(finish_time >= ? AND start_time <= ?) "
+                + "(start_time <= ? AND finish_time > ?) OR "
+                + "(finish_time >= ? AND start_time < ?) "
                 + ") AND tanggal = ?)";
         
         PreparedStatement ps = conn.prepareStatement(sql);
@@ -557,8 +557,8 @@ public class dbconn {
         
         sql = "SELECT * FROM penggunaan_ruangan WHERE "
                 + "id_ruang = ? AND ("
-                + "(start_time <= ? AND finish_time >= ?) OR "
-                + "(finish_time >= ? AND start_time <= ?) "
+                + "(start_time <= ? AND finish_time > ?) OR "
+                + "(finish_time >= ? AND start_time < ?) "
                 + ") AND tanggal = ?";
         
         
@@ -634,8 +634,8 @@ public class dbconn {
                 + "WHERE id NOT IN "
                 + "(SELECT id_ruang as id FROM penggunaan_ruangan WHERE "
                 + "("
-                + "(start_time <= ? AND finish_time >= ?) OR "
-                + "(finish_time >= ? AND start_time <= ?) "
+                + "(start_time <= ? AND finish_time > ?) OR "
+                + "(finish_time >= ? AND start_time < ?) "
                 + ") AND tanggal = ?)";
         
         PreparedStatement ps = conn.prepareStatement(sql);
