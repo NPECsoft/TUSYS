@@ -174,6 +174,7 @@ public class jPanelStatistik extends javax.swing.JPanel {
         add(jPanel2, java.awt.BorderLayout.LINE_END);
     }// </editor-fold>//GEN-END:initComponents
 
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         jenis_kegiatan = jComboBox1.getSelectedItem().toString();
 
