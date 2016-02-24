@@ -300,7 +300,7 @@ public class jPanelTransaksi extends javax.swing.JPanel {
                     panelinput.setTargetId((int) model.getValueAt(modelRow, 0));
                     Kuliah k;
                     try {
-                        k = getMainMenu().getDbc().getKuliahPemesan((int) model.getValueAt(modelRow, 0));
+                        k = getMainMenu().getDbc().getKuliahTransaksi((int) model.getValueAt(modelRow, 0));
                         if (k!=null)panelinput.setKuliah(k);
                     } catch (SQLException ex) {
                         Logger.getLogger(jPanelTransaksi.class.getName()).log(Level.SEVERE, null, ex);

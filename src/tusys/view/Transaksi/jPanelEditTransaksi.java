@@ -327,7 +327,7 @@ public class jPanelEditTransaksi extends javax.swing.JPanel {
                 getTargetdbconn().editTransaksi(t);
                 if (getTargetdbconn().getKuliahTransaksi(t.getId())!=null)
                     getTargetdbconn().deleteKuliahTransaksi(t.getId());
-                if (jenisKuliah())getTargetdbconn().addKuliahPemesan(kuliah.getKode_kuliah(), t.getId());
+                if (jenisKuliah())getTargetdbconn().addKuliahTransaksi(kuliah.getKode_kuliah(), t.getId());
                 System.out.println("check " + getTargetdbconn());
            
         } catch (/*SQL*/Exception ex) {
