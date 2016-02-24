@@ -8,6 +8,7 @@ package tusys.view.Data;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.AbstractAction;
@@ -164,6 +165,8 @@ public class jPanelData extends javax.swing.JPanel {
                     if (confirm==JOptionPane.YES_OPTION){
                         try {
                             getMainMenu().getDbc().deleteRuangById(id);
+                        } catch(SQLIntegrityConstraintViolationException ex){
+                            JOptionPane.showMessageDialog(null, "Gagal menghapus ruang.\nCoba periksa apakah ada pemesanan atau transaksi penggunaan yang menggunakan ruang ini.\n\ndetil:" + ex);
                         } catch (SQLException ex) {
                             JOptionPane.showMessageDialog(null, "error: " + ex);
                             Logger.getLogger(jPanelData.class.getName()).log(Level.SEVERE, null, ex);
@@ -243,7 +246,9 @@ public class jPanelData extends javax.swing.JPanel {
                     if (confirm==JOptionPane.YES_OPTION){
                         try {
                             getMainMenu().getDbc().deleteKuliahByKode(kodekuliah);
-                        } catch (SQLException ex) {
+                        } catch(SQLIntegrityConstraintViolationException ex){
+                            JOptionPane.showMessageDialog(null, "Gagal menghapus kuliah.\nCoba periksa apakah ada pemesanan atau transaksi penggunaan dari kuliah ini.\n\ndetil:" + ex);
+                        }catch (SQLException ex) {
                             JOptionPane.showMessageDialog(null, "error: " + ex);
                             Logger.getLogger(jPanelData.class.getName()).log(Level.SEVERE, null, ex);
                         }

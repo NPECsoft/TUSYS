@@ -113,7 +113,7 @@ public class dbconn {
                 + "`kode_kuliah_kuliah` VARCHAR(6) NOT NULL, "
                 + "`id_penggunaan_ruangan` INT(8) NOT NULL, "
                 + "FOREIGN KEY (`kode_kuliah_kuliah`) REFERENCES `kuliah`(`kode_kuliah`), "
-                + "FOREIGN KEY (`id_penggunaan_ruangan`) REFERENCES `penggunaan_ruangan`(`id`)"
+                + "FOREIGN KEY (`id_penggunaan_ruangan`) REFERENCES `penggunaan_ruangan`(`id`) ON DELETE CASCADE"
                 + ");";
         
         // Execute query
